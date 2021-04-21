@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import {
   Container,
@@ -13,7 +13,12 @@ import {
 } from "./styles";
 import ProgressBar from "../../components/ProgressBar";
 
-const ClassInformation = ({ playDisabled, onClick, checked }) => {
+const ClassInformation = ({ liveData, onClick, checked }) => {
+  const { title, description, duration, startOn, speakers } = liveData;
+  const date = startOn.toDate().toLocaleString().split(" ")[0];
+  const hour = startOn.toDate().toLocaleString().split(" ")[1].substring(0, 5);
+  const playDisabled = startOn.toDate().getTime() >= Date.now();
+
   return (
     <ContainerClassInformation playDisabled={playDisabled}>
       <ButtonPLayClass
@@ -24,32 +29,51 @@ const ClassInformation = ({ playDisabled, onClick, checked }) => {
         <PlayIcon />
       </ButtonPLayClass>
       <DescriptionCLass>
-        <h1>Aula 1 | Título da aula</h1>
-        <h3>19/04/2021</h3>
-        <h3>Horário de início: 8h</h3>
+        <h1>{title + " | " + description}</h1>
+        <h3>{date}</h3>
+        <h3>
+          {"Horário de início: " + hour + " | Duração: " + duration + " horas"}
+        </h3>
       </DescriptionCLass>
       <StatusClass checked={checked} />
     </ContainerClassInformation>
   );
 };
 
-export default function HomePageDashboard() {
+export default function HomePageDashboard({ liveList, completed }) {
+  const [percentage, setPercentage] = useState(0);
+  useEffect(() => {
+    if (liveList && completed) {
+      setPercentage(completed.length * (100 / liveList.length));
+    }
+  }, [liveList, completed]);
+
   return (
     <Container>
       <Box>
         <HeaderBox>
           <h1>Progresso</h1>
-          <h2>30%</h2>
+          <h2>{percentage}%</h2>
         </HeaderBox>
-        <ProgressBar percentage={30} />
+        <ProgressBar percentage={percentage} />
       </Box>
       <Box>
         <HeaderBox>
           <h1>Presença</h1>
         </HeaderBox>
-        <ClassInformation playDisabled={false} checked={false} />
-        <Divider />
-        <ClassInformation playDisabled={true} checked={false} />
+        {liveList.map((live, index) => {
+          console.log(live);
+          return (
+            <>
+              <ClassInformation
+                liveData={live}
+                playDisabled={false}
+                checked={false}
+              />
+              {index + 1 != liveList.length && <Divider />}
+            </>
+          );
+        })}
       </Box>
     </Container>
   );
