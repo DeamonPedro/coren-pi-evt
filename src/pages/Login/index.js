@@ -12,6 +12,7 @@ import {
   ContentRegister,
   Button,
   Select,
+  Input,
 } from "./styles";
 import iconGoogle from "../../assets/images/iconGoogle.svg";
 import illustrationLogin from "../../assets/images/illustrationLogin.svg";
@@ -20,7 +21,7 @@ export default function Login() {
   const history = useHistory();
   const [CPF, setCPF] = useState("");
   const [nameComplete, setNameComplete] = useState("");
-  const [isFormComplete, setFormComplete] = useState(true);
+  const [isFormComplete, setFormComplete] = useState("");
   const [occupation, setOccupation] = useState("notSelected");
   const [needRegister, setNeedRegister] = useState(false);
 
@@ -53,11 +54,20 @@ export default function Login() {
         nameComplete,
         completed: [],
       };
+      setFormComplete("");
+
       registerUserData(auth.currentUser.uid, userData).then(() => {
         history.push("/dashboard", userData);
       });
+    } else if (
+      CPF != "" &&
+      nurse != "notSelected" &&
+      nameComplete != "" &&
+      !verifyCPF(CPF)
+    ) {
+      setFormComplete("Insira um CPF válido * ");
     } else {
-      setFormComplete(false);
+      setFormComplete("Preencha todos os campos *");
     }
   };
 
@@ -134,9 +144,9 @@ export default function Login() {
             Precisamos de alguns dados seus para autorizar o seu acesso a nossa
             plataforma.
           </span>
-          {!isFormComplete && <h2>Preencha todos os campos *</h2>}
+          {isFormComplete != "" && <h2>{isFormComplete}</h2>}
           <label>Seu nome (completo) *</label>
-          <input
+          <Input
             placeholder="Seu nome para certificação"
             value={nameComplete}
             onChange={(evt) => setNameComplete(evt.target.value)}
@@ -145,8 +155,10 @@ export default function Login() {
             name="name"
           />
           <label>CPF *</label>
-          {!verifyCPF(CPF) && <p>CPF ERRADO</p>}
-          <input
+
+          <Input
+            className="cpf"
+            errorCPF={CPF.length == 14 ? verifyCPF(CPF) : true}
             placeholder="000.000.000-00"
             value={cpfMask(CPF)}
             onChange={(evt) => (evt.preventDefault(), setCPF(evt.target.value))}

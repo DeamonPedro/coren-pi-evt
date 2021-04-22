@@ -9,6 +9,7 @@ export const Container = styled.div`
   justify-content: center;
   width: 100%;
   padding: 0 50px 0 50px;
+  margin-bottom: 50px;
 `;
 
 export const Box = styled.div`
@@ -37,8 +38,9 @@ export const HeaderBox = styled.div`
 export const ContainerClassInformation = styled.div`
   display: grid;
   grid-template-columns: 60px auto 35px;
+  align-content: center;
   align-items: center;
-  grid-gap: 15px;
+  grid-gap: 10px;
   ${(props) =>
     !props.playDisabled &&
     css`
@@ -63,8 +65,12 @@ export const ContainerClassInformation = styled.div`
 `;
 export const ButtonPLayClass = styled.div`
   border-radius: 5px;
-  width: 100%;
-  height: 100%;
+  align-self: flex-start;
+
+  margin: 0 auto;
+  margin-top: 7px;
+  width: 50px;
+  height: 50px;
   border: none;
   display: flex;
   align-items: center;
@@ -85,6 +91,9 @@ export const DescriptionCLass = styled.div`
   h3 {
     color: #959292;
     font-weight: 300;
+  }
+  .speakers {
+    color: #000;
   }
 `;
 export const StatusClass = styled(CheckCircleRoundedIcon)`

@@ -5,6 +5,7 @@ import ExitToAppTwoToneIcon from "@material-ui/icons/ExitToAppTwoTone";
 export const Container = styled.div`
   background-color: #f7f8fc;
   margin: 0;
+  min-height: 100vh;
   display: grid;
   grid-template-columns: 300px auto;
 `;

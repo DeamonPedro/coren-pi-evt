@@ -49,7 +49,7 @@ export default function Home() {
       <Content>
         <Header>
           <LogoCoren src={logoCoren} />
-          <Link to="/login">
+          <Link to="/dashboard">
             <Button>ENTRAR</Button>
           </Link>
         </Header>
