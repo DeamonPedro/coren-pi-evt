@@ -31,10 +31,10 @@ export const LeftContent = styled.div`
   padding: 50px 60px;
 
   h1 {
-    margin-top: 25px;
+    margin-top: 60px;
     font-size: 26px;
     color: #43454f;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
   }
   span {
     font-weight: normal;
@@ -74,7 +74,7 @@ export const ButtonGoogle = styled.button`
   background-color: #f5f5f5;
   border: none;
   border-radius: 10px;
-  padding: 20px 32px;
+  padding: 20px 0;
   width: 100%;
   color: #5f5f5f;
   font-size: 14px;
@@ -90,7 +90,7 @@ export const IconGoogle = styled.img`
   height: 30px;
   position: absolute;
 
-  left: 40px;
+  left: 30px;
 `;
 
 export const ContentRegister = styled.div`
@@ -118,6 +118,12 @@ export const ContentRegister = styled.div`
     font-size: 14px;
     line-height: 25px;
     color: #959292;
+  }
+  h2 {
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 25px;
+    color: #ff4b4b;
   }
   label {
     font-weight: bold;

@@ -20,6 +20,7 @@ export default function Login() {
   const history = useHistory();
   const [CPF, setCPF] = useState("");
   const [nameComplete, setNameComplete] = useState("");
+  const [isFormComplete, setFormComplete] = useState(true);
   const [occupation, setOccupation] = useState("notSelected");
   const [needRegister, setNeedRegister] = useState(false);
 
@@ -39,7 +40,7 @@ export default function Login() {
   };
 
   const verifyForm = (CPF, nurse) => {
-    if (CPF != "" && nurse != "notSelected") {
+    if (CPF != "" && nurse != "notSelected" && nameComplete != "") {
       const userData = {
         CPF,
         nurse,
@@ -50,8 +51,19 @@ export default function Login() {
       registerUserData(auth.currentUser.uid, userData).then(() => {
         history.push("/dashboard", userData);
       });
+    } else {
+      setFormComplete(false);
     }
   };
+  function cpfMask(value) {
+    console.log("valooor" + value);
+    return value
+      .replace(/\D/g, "")
+      .replace(/(\d{3})(\d)/, "$1.$2")
+      .replace(/(\d{3})(\d)/, "$1.$2")
+      .replace(/(\d{3})(\d{1,2})/, "$1-$2")
+      .replace(/(-\d{2})\d+?$/, "$1");
+  }
 
   const Resister = () => {
     return (
@@ -62,28 +74,30 @@ export default function Login() {
           Precisamos de alguns dados seus para autorizar o seu acesso a nossa
           plataforma.
         </span>
+        {!isFormComplete && <h2>Preencha todos os campos *</h2>}
         <label>Seu nome (completo) *</label>
         <input
           placeholder="Seu nome para certificação"
           value={nameComplete}
-          onChange={(evt) => setNameComplete(evt.value)}
+          onChange={(evt) => setNameComplete(evt.target.value)}
           type="text"
-          id="CPF"
-          name="CPF"
+          id="name"
+          name="name"
         />
         <label>CPF *</label>
         <input
           placeholder="000.000.000-00"
           value={CPF}
-          onChange={(evt) => setCPF(evt.value)}
-          type="number"
+          onChange={(evt) => (evt.preventDefault(), setCPF(evt.target.value))}
           id="CPF"
           name="CPF"
+          type="text"
+          maxLength="14"
         />
         <label>Ocupação * </label>
         <Select
           value={occupation}
-          onChange={(evt) => setOccupation(evt.value)}
+          onChange={(evt) => setOccupation(evt.target.value)}
           name="occupation"
           id="occupation"
           placeholder="selecione"
