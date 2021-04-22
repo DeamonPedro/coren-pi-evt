@@ -144,10 +144,6 @@ export const ContentRegister = styled.div`
     background-color: #f5f5f5;
     padding: 15px;
     font-size: 14px;
-
-    ::placeholder {
-      color: #959292;
-    }
   }
 `;
 

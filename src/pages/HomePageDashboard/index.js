@@ -19,13 +19,15 @@ const ClassInformation = ({ liveData, onClick, checked }) => {
   const { title, description, duration, startOn, speakers } = liveData;
   const date = startOn.toDate().toLocaleString().split(" ")[0];
   const hour = startOn.toDate().toLocaleString().split(" ")[1].substring(0, 5);
-  const playDisabled = false; //startOn.toDate().getTime() >= Date.now();
+  const playDisabled =
+    startOn.toDate().getTime() >= Date.now() ||
+    new Date("05-21-2021") <= Date.now();
 
   return (
     <ContainerClassInformation playDisabled={playDisabled}>
       <ButtonPLayClass
         className="ButtonPLayClass"
-        onClick={onClick}
+        onClick={!playDisabled && onClick}
         title={playDisabled && "Aula indisponível"}
       >
         <PlayIcon />
