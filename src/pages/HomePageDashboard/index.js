@@ -12,18 +12,20 @@ import {
   Divider,
 } from "./styles";
 import ProgressBar from "../../components/ProgressBar";
+import { registerPresence } from "../../services/firestore";
+import { auth } from "../../services/auth";
 
 const ClassInformation = ({ liveData, onClick, checked }) => {
   const { title, description, duration, startOn, speakers } = liveData;
   const date = startOn.toDate().toLocaleString().split(" ")[0];
   const hour = startOn.toDate().toLocaleString().split(" ")[1].substring(0, 5);
-  const playDisabled = startOn.toDate().getTime() >= Date.now();
+  const playDisabled = false; //startOn.toDate().getTime() >= Date.now();
 
   return (
     <ContainerClassInformation playDisabled={playDisabled}>
       <ButtonPLayClass
         className="ButtonPLayClass"
-        onClick={() => onClick}
+        onClick={onClick}
         title={playDisabled && "Aula indisponível"}
       >
         <PlayIcon />
@@ -40,10 +42,22 @@ const ClassInformation = ({ liveData, onClick, checked }) => {
   );
 };
 
-export default function HomePageDashboard({ liveList, completed }) {
+export default function HomePageDashboard({ liveList, completed, refresh }) {
   const [percentage, setPercentage] = useState(0);
+
+  console.log(completed);
+
+  const playLiveVideo = (checked, live) => {
+    window.open(live.url, "_blank").focus();
+    if (!checked) {
+      registerPresence(auth.currentUser.uid, live.id).then(() => {
+        refresh();
+      });
+    }
+  };
+
   useEffect(() => {
-    if (liveList && completed) {
+    if (liveList.length && completed.length) {
       setPercentage(completed.length * (100 / liveList.length));
     }
   }, [liveList, completed]);
@@ -53,7 +67,7 @@ export default function HomePageDashboard({ liveList, completed }) {
       <Box>
         <HeaderBox>
           <h1>Progresso</h1>
-          <h2>{percentage}%</h2>
+          <h2>{Math.round(percentage) + "%"}</h2>
         </HeaderBox>
         <ProgressBar percentage={percentage} />
       </Box>
@@ -62,13 +76,13 @@ export default function HomePageDashboard({ liveList, completed }) {
           <h1>Presença</h1>
         </HeaderBox>
         {liveList.map((live, index) => {
-          console.log(live);
+          const checked = completed.includes(live.id);
           return (
             <>
               <ClassInformation
                 liveData={live}
-                playDisabled={false}
-                checked={false}
+                onClick={() => playLiveVideo(checked, live)}
+                checked={checked}
               />
               {index + 1 != liveList.length && <Divider />}
             </>

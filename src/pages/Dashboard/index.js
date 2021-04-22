@@ -17,16 +17,30 @@ import {
 import HomePageDashboard from "../HomePageDashboard";
 import { getAllLivesData } from "../../services/firestore";
 import logoCoren from "../../assets/images/logoCoren.png";
-import { useLocation } from "react-router-dom";
-import { auth } from "../../services/auth";
+import { useHistory, useLocation } from "react-router-dom";
+import { auth, Logout } from "../../services/auth";
+import { getUserData } from "../../services/firestore";
 import Certificates from "../Certificates";
 
-export default function Dashboard({ userData }) {
+export default function Dashboard() {
   const { state } = useLocation();
+  const history = useHistory();
+  const [userData, setUserData] = useState(state);
   const [menuSelected, setMenuSelected] = useState("home");
   const [liveList, setLiveList] = useState([]);
 
+  const loadUserData = () => {
+    getUserData(auth.currentUser.uid)
+      .then((data) => {
+        setUserData(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   React.useEffect(() => {
+    loadUserData();
     getAllLivesData()
       .then((list) => {
         setLiveList(list);
@@ -53,7 +67,10 @@ export default function Dashboard({ userData }) {
           <AwardIcon />
           <text>Certificado</text>
         </MenuItem>
-        <MenuItem logout={true}>
+        <MenuItem
+          onClick={() => Logout().then(() => history.push("/login"))}
+          logout={true}
+        >
           <ExitIcon />
           <text>Sair</text>
         </MenuItem>
@@ -66,9 +83,17 @@ export default function Dashboard({ userData }) {
           <LogoCoren src={logoCoren} />
         </HeaderContent>
         {menuSelected == "home" ? (
-          <HomePageDashboard liveList={liveList} completed={state.completed} />
+          <HomePageDashboard
+            liveList={liveList}
+            refresh={loadUserData}
+            completed={userData.completed}
+          />
         ) : (
-          <Certificates />
+          <Certificates
+            unlocked={liveList.every((live) =>
+              userData.completed.includes(live.id)
+            )}
+          />
         )}
       </Content>
     </Container>

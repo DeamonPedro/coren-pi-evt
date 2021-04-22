@@ -13,15 +13,14 @@ import {
   Warning,
 } from "./styles";
 
-export default function Certificates({}) {
-  const [certificateApproved, isCertificateApproved] = useState(false);
+export default function Certificates({ unlocked }) {
   return (
     <Container>
       <Box>
         <HeaderBox>
           <h1>Seus Certificados</h1>
         </HeaderBox>
-        {certificateApproved ? (
+        {unlocked ? (
           <CertificateBox>
             <IconCertificate></IconCertificate>
             <Description>

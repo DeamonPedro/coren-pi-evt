@@ -88,7 +88,10 @@ export default function Login() {
         <input
           placeholder="000.000.000-00"
           value={CPF}
-          onChange={(evt) => (evt.preventDefault(), setCPF(evt.target.value))}
+          onChange={(evt) => {
+            evt.preventDefault();
+            setCPF(evt.target.value);
+          }}
           id="CPF"
           name="CPF"
           type="text"
