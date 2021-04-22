@@ -24,6 +24,7 @@ import {
   ButtonIcon,
   SocialNetwork,
 } from "./styles";
+import { Link } from "react-router-dom";
 import logoCoren from "../../assets/images/logoCoren.png";
 import participant1 from "../../assets/images/participants/participant1.svg";
 import participant2 from "../../assets/images/participants/participant2.svg";
@@ -48,7 +49,9 @@ export default function Home() {
       <Content>
         <Header>
           <LogoCoren src={logoCoren} />
-          <Button>ENTRAR</Button>
+          <Link to="/login">
+            <Button>ENTRAR</Button>
+          </Link>
         </Header>
         <SubscribeCard>
           <h1>Inscreva-se Já!</h1>
@@ -57,7 +60,9 @@ export default function Home() {
             enfermeiro, inscreva-se ja!
           </span>
           <Options>
-            <Button>INSCREVER-SE</Button>
+            <Link to="/login">
+              <Button to="/login">INSCREVER-SE</Button>
+            </Link>
             <Button outline={true}>PROGRAMAÇÃO</Button>
           </Options>
           <LogoSemanaEnf src={logoSemanaEnf} />

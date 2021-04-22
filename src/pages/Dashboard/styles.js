@@ -11,7 +11,7 @@ export const Container = styled.div`
 
 export const MenuBar = styled.div`
   background-color: #fff;
-  height: 100vh;
+  height: 100%;
   display: flex;
   align-items: center;
   padding-top: 25px;
