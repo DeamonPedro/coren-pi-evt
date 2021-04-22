@@ -65,59 +65,6 @@ export default function Login() {
       .replace(/(-\d{2})\d+?$/, "$1");
   }
 
-  const Resister = () => {
-    return (
-      <ContentRegister>
-        <img src={logoCoren} />
-        <h1>Adicione seus dados</h1>
-        <span>
-          Precisamos de alguns dados seus para autorizar o seu acesso a nossa
-          plataforma.
-        </span>
-        {!isFormComplete && <h2>Preencha todos os campos *</h2>}
-        <label>Seu nome (completo) *</label>
-        <input
-          placeholder="Seu nome para certificação"
-          value={nameComplete}
-          onChange={(evt) => setNameComplete(evt.target.value)}
-          type="text"
-          id="name"
-          name="name"
-        />
-        <label>CPF *</label>
-        <input
-          placeholder="000.000.000-00"
-          value={CPF}
-          onChange={(evt) => (evt.preventDefault(), setCPF(evt.target.value))}
-          id="CPF"
-          name="CPF"
-          type="text"
-          maxLength="14"
-        />
-        <label>Ocupação * </label>
-        <Select
-          value={occupation}
-          onChange={(evt) => setOccupation(evt.target.value)}
-          name="occupation"
-          id="occupation"
-          placeholder="selecione"
-        >
-          <option value="notSelected" disabled="true">
-            Selecione
-          </option>
-          <option value="nurse">Enfermeiro(a)</option>
-          <option value="nursingTec">Técnico(a) em enfermagem</option>
-          <option value="nursingAssist">Auxiliar de enfermagem</option>
-          <option value="student">Estudante</option>
-        </Select>
-
-        <Button onClick={() => verifyForm(CPF, occupation)}>
-          Concluir inscrição
-        </Button>
-      </ContentRegister>
-    );
-  };
-
   return (
     <Container>
       {!needRegister ? (
@@ -146,7 +93,54 @@ export default function Login() {
           </RightContent>
         </ContentLogin>
       ) : (
-        <Resister />
+        <ContentRegister>
+          <img src={logoCoren} />
+          <h1>Adicione seus dados</h1>
+          <span>
+            Precisamos de alguns dados seus para autorizar o seu acesso a nossa
+            plataforma.
+          </span>
+          {!isFormComplete && <h2>Preencha todos os campos *</h2>}
+          <label>Seu nome (completo) *</label>
+          <input
+            placeholder="Seu nome para certificação"
+            value={nameComplete}
+            onChange={(evt) => setNameComplete(evt.target.value)}
+            type="text"
+            id="name"
+            name="name"
+          />
+          <label>CPF *</label>
+          <input
+            placeholder="000.000.000-00"
+            value={cpfMask(CPF)}
+            onChange={(evt) => (evt.preventDefault(), setCPF(evt.target.value))}
+            id="CPF"
+            name="CPF"
+            type="text"
+            maxLength="14"
+          />
+          <label>Ocupação * </label>
+          <Select
+            value={occupation}
+            onChange={(evt) => setOccupation(evt.target.value)}
+            name="occupation"
+            id="occupation"
+            placeholder="selecione"
+          >
+            <option value="notSelected" disabled="true">
+              Selecione
+            </option>
+            <option value="nurse">Enfermeiro(a)</option>
+            <option value="nursingTec">Técnico(a) em enfermagem</option>
+            <option value="nursingAssist">Auxiliar de enfermagem</option>
+            <option value="student">Estudante</option>
+          </Select>
+
+          <Button onClick={() => verifyForm(CPF, occupation)}>
+            Concluir inscrição
+          </Button>
+        </ContentRegister>
       )}
     </Container>
   );
