@@ -13,12 +13,12 @@ import {
   Warning,
 } from "./styles";
 
-export default function Certificates({ unlocked }) {
+export default function HomePageDashboardADM({ unlocked }) {
   return (
     <Container>
       <Box>
         <HeaderBox>
-          <h1>Seus Certificados</h1>
+          <h1>Inscritos</h1>
         </HeaderBox>
         {unlocked ? (
           <CertificateBox>

@@ -142,19 +142,34 @@ export default function Home() {
             <LogoCoren src={logoCoren} />
             <span>
               Desenvolvido por:{" "}
-              <a href="https://www.instagram.com/keracomunicacao">
+              <a
+                style={{ cursor: "pointer" }}
+                onClick={() =>
+                  window.open("https://www.instagram.com/keracomunicacao")
+                }
+              >
                 Agência KERA
               </a>
             </span>
           </LeftContainer>
           <RightContainer>
             <SocialNetwork>
-              <ButtonIcon>
-                <InstagramIcon className="icon" />
-              </ButtonIcon>
-              <ButtonIcon>
-                <FacebookIcon className="icon" />
-              </ButtonIcon>
+              <a
+                onClick={() =>
+                  window.open("https://www.instagram.com/corenpioficial/")
+                }
+              >
+                <ButtonIcon>
+                  <InstagramIcon className="icon" />
+                </ButtonIcon>
+              </a>
+              <a
+                onClick={() => window.open("https://www.facebook.com/corenpi")}
+              >
+                <ButtonIcon>
+                  <FacebookIcon className="icon" />
+                </ButtonIcon>
+              </a>
             </SocialNetwork>
 
             <span>Copyright 2021 Conselho Regional de Enfermagem do Piauí</span>

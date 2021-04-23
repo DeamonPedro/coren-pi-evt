@@ -112,3 +112,21 @@ export const Divider = styled.div`
   height: 1px;
   margin: 15px 0 15px 0;
 `;
+
+export const TagADM = styled.div`
+  position: absolute;
+  bottom: 0;
+  background-color: #fbbc05;
+  border-radius: 50px;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 3px 10px;
+`;
+export const ContentAvatar = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+`;

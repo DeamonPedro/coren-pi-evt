@@ -1,0 +1,84 @@
+import styled, { css } from "styled-components";
+
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0 50px 0 50px;
+`;
+
+export const Box = styled.div`
+  background-color: #fff;
+  border-radius: 10px;
+  width: 100%;
+  padding: 30px;
+  margin-top: 30px;
+`;
+
+export const HeaderBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  h1 {
+    color: #43454f;
+    font-weight: 300;
+    font-size: 26px;
+  }
+  h2 {
+    color: #43454f;
+    font-size: 20px;
+  }
+`;
+
+export const Input = styled.input`
+  -webkit-appearance: none;
+  appearance: none;
+  border: none;
+  border-radius: 5px;
+  background-color: #f5f5f5;
+  padding: 22px;
+  width: 100%;
+  font-size: 2.2rem;
+  position: relative;
+  margin-bottom: 15px;
+  text-align: start;
+`;
+
+export const Message = styled.textarea`
+  -webkit-appearance: none;
+  appearance: none;
+  border: none;
+  border-radius: 5px;
+  background-color: #f5f5f5;
+  padding: 22px;
+  width: 100%;
+  font-size: 2.2rem;
+  position: relative;
+  margin-bottom: 5px;
+  text-align: start;
+  resize: none;
+  font-family: "Open Sans";
+  ::placeholder {
+    position: absolute;
+  }
+
+  height: 300px;
+`;
+
+export const Button = styled.button`
+  padding: 12px 32px;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  background-color: #044956;
+  border: none;
+  margin-top: 10px;
+  font-size: 1.6rem;
+  color: #fff;
+  &:hover {
+    background-color: #076475;
+  }
+`;
