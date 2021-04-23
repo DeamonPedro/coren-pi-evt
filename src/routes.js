@@ -38,7 +38,7 @@ export function Routes() {
           </Route>,
         ]}
         {authState === "not authenticated" && (
-          <Route path="/dashboard*">
+          <Route path="/dashboard">
             <Redirect to="/login" />
           </Route>
         )}

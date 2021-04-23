@@ -24,20 +24,28 @@ import logoCoren from "../../assets/images/logoCoren.png";
 import { useHistory, useLocation } from "react-router-dom";
 import { auth, Logout } from "../../services/auth";
 import { getUserData } from "../../services/firestore";
-import Certificates from "../Certificates";
+
+import Certificates from "../Certificate";
 import EmailsPage from "../EmailsPage";
 import MenuIcon from "@material-ui/icons/Menu";
 import CloseIcon from "@material-ui/icons/Close";
 import { useWindowDimensions } from "../../services/utils";
+
 export default function Dashboard() {
   const { state } = useLocation();
   const history = useHistory();
-  const [userData, setUserData] = useState(state);
+
+  const [userData, setUserData] = useState(state ? state : null);
+
   const [isAdm, setAdm] = useState(true);
+
   const [visibleMenu, setVisibleMenu] = useState(false);
+
   const [menuSelected, setMenuSelected] = useState("home");
   const [liveList, setLiveList] = useState([]);
   const { width, height } = useWindowDimensions();
+
+  console.log(userData);
 
   const loadUserData = () => {
     getUserData(auth.currentUser.uid)
@@ -46,6 +54,7 @@ export default function Dashboard() {
       })
       .catch((error) => {
         console.log(error);
+        history.push("/login");
       });
   };
 
@@ -64,98 +73,108 @@ export default function Dashboard() {
 
   return (
     <Container>
-      <MenuBar visible={visibleMenu}>
-        {width < 800 && (
-          <a
-            onClick={() => setVisibleMenu(false)}
-            style={{ position: "absolute", right: 20 }}
-          >
-            <CloseIcon style={{ fontSize: "30" }} />
-          </a>
-        )}
-        <ContentAvatar>
-          <Avatar src={auth.currentUser.photoURL} />
-
-          {isAdm && <TagADM>Administrador</TagADM>}
-        </ContentAvatar>
-
-        <Name>{auth.currentUser.displayName}</Name>
-
-        <MenuItem
-          onClick={() => setMenuSelected("home")}
-          selected={menuSelected == "home" && true}
-        >
-          <HomeIcon />
-          <text>Página inicial</text>
-        </MenuItem>
-        <MenuItem
-          onClick={() => setMenuSelected("certificate")}
-          selected={menuSelected == "certificate" && true}
-        >
-          <AwardIcon />
-          <text>Certificados</text>
-        </MenuItem>
-
-        {isAdm && (
-          <>
-            <MenuItem
-              onClick={() => setMenuSelected("inscribes")}
-              selected={menuSelected == "inscribes" && true}
-            >
-              <HomeIcon />
-              <text>Usuários</text>
-            </MenuItem>
-            <MenuItem
-              onClick={() => setMenuSelected("emails")}
-              selected={menuSelected == "emails" && true}
-            >
-              <HomeIcon />
-              <text>Enviar Email</text>
-            </MenuItem>
-          </>
-        )}
-
-        <Divider />
-        <MenuItem
-          onClick={() => Logout().then(() => history.push("/login"))}
-          logout={true}
-        >
-          <ExitIcon />
-          <text>Sair</text>
-        </MenuItem>
-      </MenuBar>
-      <Content>
-        <HeaderContent>
-          {width < 800 && (
-            <a onClick={() => setVisibleMenu(true)}>
-              <MenuIcon style={{ fontSize: "30" }} />
-            </a>
-          )}
-          <Title>
-            {menuSelected == "home" && "Página Inicial"}
-            {menuSelected == "certificate" && "Certificados"}
-            {menuSelected == "inscribes" && "Inscritos"}
-            {menuSelected == "emails" && "Enviar Email"}
-          </Title>
-          {width > 800 && <LogoCoren src={logoCoren} />}
-        </HeaderContent>
-        {menuSelected == "home" && (
-          <HomePageDashboard
-            liveList={liveList}
-            refresh={loadUserData}
-            completed={userData.completed}
-          />
-        )}
-        {menuSelected == "certificate" && (
-          <Certificates
-            unlocked={liveList.every((live) =>
-              userData.completed.includes(live.id)
+      {userData && (
+        <>
+          <MenuBar visible={visibleMenu}>
+            {width < 800 && (
+              <a
+                onClick={() => setVisibleMenu(false)}
+                style={{ position: "absolute", right: 20 }}
+              >
+                <CloseIcon style={{ fontSize: "30" }} />
+              </a>
             )}
-          />
-        )}
-        {menuSelected == "inscribes" && <HomePageDashboardADM />}
-        {menuSelected == "emails" && <EmailsPage />}
-      </Content>
+            <ContentAvatar>
+              <Avatar src={auth.currentUser.photoURL} />
+
+              {isAdm && <TagADM>Administrador</TagADM>}
+            </ContentAvatar>
+
+            <Name>{auth.currentUser.displayName}</Name>
+
+            <MenuItem
+              onClick={() => (setMenuSelected("home"), setVisibleMenu(false))}
+              selected={menuSelected == "home" && true}
+            >
+              <HomeIcon />
+              <text>Página inicial</text>
+            </MenuItem>
+            <MenuItem
+              onClick={() => (
+                setMenuSelected("certificate"), setVisibleMenu(false)
+              )}
+              selected={menuSelected == "certificate" && true}
+            >
+              <AwardIcon />
+              <text>Certificados</text>
+            </MenuItem>
+
+            {isAdm && (
+              <>
+                <MenuItem
+                  onClick={() => (
+                    setMenuSelected("inscribes"), setVisibleMenu(false)
+                  )}
+                  selected={menuSelected == "inscribes" && true}
+                >
+                  <HomeIcon />
+                  <text>Usuários</text>
+                </MenuItem>
+                <MenuItem
+                  onClick={() => (
+                    setMenuSelected("emails"), setVisibleMenu(false)
+                  )}
+                  selected={menuSelected == "emails" && true}
+                >
+                  <HomeIcon />
+                  <text>Enviar Email</text>
+                </MenuItem>
+              </>
+            )}
+
+            <Divider />
+            <MenuItem
+              onClick={() => Logout().then(() => history.push("/login"))}
+              logout={true}
+            >
+              <ExitIcon />
+              <text>Sair</text>
+            </MenuItem>
+          </MenuBar>
+          <Content>
+            <HeaderContent>
+              {width < 800 && (
+                <a onClick={() => setVisibleMenu(true)}>
+                  <MenuIcon style={{ fontSize: "30" }} />
+                </a>
+              )}
+              <Title>
+                {menuSelected == "home" && "Página Inicial"}
+                {menuSelected == "certificate" && "Certificados"}
+                {menuSelected == "inscribes" && "Inscritos"}
+                {menuSelected == "emails" && "Enviar Email"}
+              </Title>
+              {width > 800 && <LogoCoren src={logoCoren} />}
+            </HeaderContent>
+            {menuSelected == "home" && (
+              <HomePageDashboard
+                liveList={liveList}
+                refresh={loadUserData}
+                completed={userData.completed}
+              />
+            )}
+            {menuSelected == "certificate" && (
+              <Certificates
+                unlocked={liveList.every((live) =>
+                  userData.completed.includes(live.id)
+                )}
+              />
+            )}
+            {menuSelected == "inscribes" && <HomePageDashboardADM />}
+            {menuSelected == "emails" && <EmailsPage />}
+          </Content>
+        </>
+      )}
     </Container>
   );
 }

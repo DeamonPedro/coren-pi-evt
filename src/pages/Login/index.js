@@ -50,7 +50,7 @@ export default function Login() {
       verifyCPF(CPF)
     ) {
       const userData = {
-        CPF,
+        CPF: CPF.replace(/\-/g, "").replace(/\./g, ""),
         nurse,
         email: auth.currentUser.email,
         nameComplete,
