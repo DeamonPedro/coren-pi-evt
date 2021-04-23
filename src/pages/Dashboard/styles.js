@@ -8,6 +8,11 @@ export const Container = styled.div`
   min-height: 100vh;
   display: grid;
   grid-template-columns: 300px auto;
+  @media (max-width: 800px) {
+    position: relative;
+    display: flex;
+    grid-template-columns: auto;
+  }
 `;
 
 export const MenuBar = styled.div`
@@ -18,12 +23,29 @@ export const MenuBar = styled.div`
   padding-top: 25px;
   justify-content: flex-start;
   flex-direction: column;
+  position: relative;
+  transition: 0.3s;
+  ${(props) =>
+    !props.visible &&
+    css`
+      transform: translateX(-300px);
+    `}
+  @media (max-width: 800px) {
+    position: absolute;
+    width: 300px;
+    box-shadow: 7px 1px 13px -6px rgba(0, 0, 0, 0.08);
+    -webkit-box-shadow: 7px 1px 13px -6px rgba(0, 0, 0, 0.08);
+    -moz-box-shadow: 7px 1px 13px -6px rgba(0, 0, 0, 0.08);
+  }
 `;
 export const Content = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
   flex-direction: column;
+  @media (max-width: 800px) {
+    width: 100%;
+  }
 `;
 
 export const Avatar = styled.img`
@@ -34,7 +56,7 @@ export const Avatar = styled.img`
 `;
 export const Name = styled.text`
   font-weight: bold;
-  font-size: 12px;
+  font-size: 1.2rem;
   margin-bottom: 20px;
 `;
 export const MenuItem = styled.button`
@@ -47,6 +69,7 @@ export const MenuItem = styled.button`
   padding-left: 50px;
   display: flex;
   transition: 0.3s;
+
   ${(props) =>
     props.logout
       ? css`
@@ -71,25 +94,25 @@ export const MenuItem = styled.button`
 
   text {
     margin-left: 10px;
-    font-size: 14px;
+    font-size: 1.4rem;
   }
 `;
 
 export const HomeIcon = styled(HomeOutlinedIcon)`
   && {
-    font-size: 18px;
+    font-size: 1.8rem;
   }
 `;
 
 export const AwardIcon = styled(CardMembershipIcon)`
   && {
-    font-size: 18px;
+    font-size: 1.8rem;
   }
 `;
 
 export const ExitIcon = styled(ExitToAppTwoToneIcon)`
   && {
-    font-size: 18px;
+    font-size: 1.8rem;
   }
 `;
 
@@ -98,13 +121,20 @@ export const HeaderContent = styled.div`
   width: 100%;
   justify-content: space-between;
   padding: 30px 50px 0px 50px;
+  @media (max-width: 800px) {
+    padding: 30px 30px 0px 30px;
+  }
 `;
 export const Title = styled.h1`
   font-weight: bold;
-  font-size: 28px;
+  font-size: 2.8rem;
   color: #43454f;
 `;
-export const LogoCoren = styled.img``;
+export const LogoCoren = styled.img`
+  @media (max-width: 800px) {
+    width: 120px;
+  }
+`;
 
 export const Divider = styled.div`
   width: 100%;
@@ -119,7 +149,7 @@ export const TagADM = styled.div`
   background-color: #fbbc05;
   border-radius: 50px;
   color: #fff;
-  font-size: 1rem;
+  font-size: 1rrem;
   font-weight: bold;
   padding: 3px 10px;
 `;
@@ -129,4 +159,7 @@ export const ContentAvatar = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
+  @media (max-width: 800px) {
+    padding-top: 40px;
+  }
 `;

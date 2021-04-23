@@ -21,6 +21,10 @@ export const NurseBackground = styled.img`
   position: absolute;
   top: 0;
   z-index: 1;
+  width: 45%;
+  @media (max-width: 800px) {
+    width: 100%;
+  }
 `;
 export const Header = styled.div`
   width: 100%;
@@ -72,16 +76,25 @@ export const SubscribeCard = styled.div`
   flex-direction: column;
   h1 {
     font-weight: bold;
-    font-size: 78px;
+    font-size: 7.8rem;
     color: #044956;
   }
   span {
     font-weight: normal;
-    font-size: 18px;
+    font-size: 1.8rem;
     line-height: 30px;
     text-align: center;
     width: 600px;
     color: #848484;
+  }
+
+  @media (max-width: 800px) {
+    h1 {
+      font-size: 4.8rem;
+    }
+    span {
+      width: 90%;
+    }
   }
 `;
 
@@ -91,6 +104,9 @@ export const Options = styled.div`
   width: 400px;
   align-items: center;
   justify-content: space-evenly;
+  @media (max-width: 800px) {
+    width: 100%;
+  }
 `;
 
 export const AboutTab = styled.div``;
@@ -106,10 +122,20 @@ export const ParticipantsTab = styled.div`
     margin-top: 90px;
     margin-bottom: 60px;
     font-weight: bold;
-    font-size: 48px;
+    font-size: 4.8rem;
     line-height: 65px;
     text-align: center;
     color: #044956;
+  }
+  @media (max-width: 800px) {
+    padding: 0;
+    h1 {
+      margin-top: 40px;
+      font-size: 3rem;
+      line-height: 6rem;
+      margin-bottom: 30px;
+      width: 100%;
+    }
   }
 `;
 
@@ -175,6 +201,9 @@ export const Footer = styled.div`
   width: 100%;
   height: 100px;
   background-color: #fff;
+  @media (max-width: 800px) {
+    height: 180px;
+  }
 `;
 
 export const FooterContent = styled.div`
@@ -185,6 +214,9 @@ export const FooterContent = styled.div`
   display: flex;
   height: 110px;
   justify-content: space-between;
+  @media (max-width: 800px) {
+    flex-direction: column;
+  }
 `;
 export const LeftContainer = styled.div`
   display: flex;
@@ -193,10 +225,11 @@ export const LeftContainer = styled.div`
   justify-content: space-between;
   img {
     width: 130px;
+    margin-bottom: 5px;
   }
   span {
     font-weight: normal;
-    font-size: 14px;
+    font-size: 1.4rem;
     color: #5f5f5f;
     a {
       color: #044956;
@@ -210,10 +243,14 @@ export const RightContainer = styled.div`
   flex-direction: column;
   height: 100%;
   justify-content: space-between;
-
+  @media (max-width: 800px) {
+    align-items: flex-start;
+    margin-top: 15px;
+    margin-bottom: 10px;
+  }
   span {
     font-weight: normal;
-    font-size: 14px;
+    font-size: 1.4rem;
     color: #5f5f5f;
   }
 `;
@@ -229,6 +266,11 @@ export const ButtonIcon = styled.button`
   height: 40px;
   cursor: pointer;
   transition: 0.3s;
+  @media (max-width: 800px) {
+    margin: 0;
+    margin-bottom: 5px;
+    margin-right: 10px;
+  }
   &:hover {
     background-color: #076475;
   }
@@ -236,7 +278,7 @@ export const ButtonIcon = styled.button`
   align-items: center;
   justify-content: center;
   .icon {
-    font-size: 25px;
+    font-size: 2.5rem;
   }
 `;
 

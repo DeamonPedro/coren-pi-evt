@@ -9,6 +9,10 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   background-color: #fcfcfc;
+  @media (max-width: 800px) {
+    padding: 0;
+    background-color: #fff;
+  }
 `;
 
 export const ContentLogin = styled.div`
@@ -23,13 +27,21 @@ export const ContentLogin = styled.div`
 
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.06);
   border-radius: 20px;
+  @media (max-width: 800px) {
+    width: 100%;
+    display: flex;
+    height: 100%;
+    box-shadow: none;
+  }
 `;
 
 export const LeftContent = styled.div`
   height: 100%;
   border-radius: 20px 0 0 20px;
   padding: 50px 60px;
-
+  @media (max-width: 800px) {
+    padding: 50px 30px;
+  }
   h1 {
     margin-top: 60px;
     font-size: 26px;
@@ -91,6 +103,9 @@ export const IconGoogle = styled.img`
   position: absolute;
 
   left: 30px;
+  @media (max-width: 800px) {
+    left: 25px;
+  }
 `;
 
 export const ContentRegister = styled.div`
@@ -103,6 +118,10 @@ export const ContentRegister = styled.div`
   background-color: #fff;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.06);
   border-radius: 20px;
+  @media (max-width: 800px) {
+    padding: 50px 30px;
+    width: 100%;
+  }
   img {
     width: 159px;
     height: 40px;

@@ -7,6 +7,9 @@ export const Container = styled.div`
   justify-content: center;
   width: 100%;
   padding: 0 50px 0 50px;
+  @media (max-width: 800px) {
+    padding: 30px;
+  }
 `;
 
 export const Box = styled.div`
@@ -15,6 +18,9 @@ export const Box = styled.div`
   width: 100%;
   padding: 30px;
   margin-top: 30px;
+  @media (max-width: 800px) {
+    padding: 20px;
+  }
 `;
 
 export const HeaderBox = styled.div`
@@ -24,11 +30,11 @@ export const HeaderBox = styled.div`
   h1 {
     color: #43454f;
     font-weight: 300;
-    font-size: 26px;
+    font-size: 2.6rem;
   }
   h2 {
     color: #43454f;
-    font-size: 20px;
+    font-size: 2rem;
   }
 `;
 
@@ -40,8 +46,8 @@ export const Input = styled.input`
   background-color: #f5f5f5;
   padding: 22px;
   width: 100%;
-  font-size: 2.2rem;
-  position: relative;
+  font-size: 2.remem;
+
   margin-bottom: 15px;
   text-align: start;
 `;
@@ -54,15 +60,12 @@ export const Message = styled.textarea`
   background-color: #f5f5f5;
   padding: 22px;
   width: 100%;
-  font-size: 2.2rem;
-  position: relative;
+  font-size: 2.remem;
+
   margin-bottom: 5px;
   text-align: start;
   resize: none;
   font-family: "Open Sans";
-  ::placeholder {
-    position: absolute;
-  }
 
   height: 300px;
 `;
@@ -76,7 +79,7 @@ export const Button = styled.button`
   background-color: #044956;
   border: none;
   margin-top: 10px;
-  font-size: 1.6rem;
+  font-size: 1.remem;
   color: #fff;
   &:hover {
     background-color: #076475;

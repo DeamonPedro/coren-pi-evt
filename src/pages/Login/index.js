@@ -17,7 +17,9 @@ import {
 import iconGoogle from "../../assets/images/iconGoogle.svg";
 import illustrationLogin from "../../assets/images/illustrationLogin.svg";
 import logoCoren from "../../assets/images/logoCoren.png";
+import { useWindowDimensions } from "../../services/utils";
 export default function Login() {
+  const { width, height } = useWindowDimensions();
   const history = useHistory();
   const [CPF, setCPF] = useState("");
   const [nameComplete, setNameComplete] = useState("");
@@ -132,9 +134,11 @@ export default function Login() {
               Nao possui conta do Google? clique <a>aqui.</a>{" "}
             </h4>
           </LeftContent>
-          <RightContent>
-            <img src={illustrationLogin} />
-          </RightContent>
+          {width > 800 && (
+            <RightContent>
+              <img src={illustrationLogin} />
+            </RightContent>
+          )}
         </ContentLogin>
       ) : (
         <ContentRegister>

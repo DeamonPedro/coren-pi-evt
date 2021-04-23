@@ -42,7 +42,9 @@ import "pure-react-carousel/dist/react-carousel.es.css";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import InstagramIcon from "@material-ui/icons/Instagram";
 import FacebookIcon from "@material-ui/icons/Facebook";
+import { useWindowDimensions } from "../../services/utils";
 export default function Home() {
+  const { width, height } = useWindowDimensions();
   return (
     <Container>
       <NurseBackground src={nurseBackground} />
@@ -63,7 +65,7 @@ export default function Home() {
             <Link to="/login">
               <Button to="/login">INSCREVER-SE</Button>
             </Link>
-            <Button outline={true}>PROGRAMAÇÃO</Button>
+            {/* <Button outline={true}>PROGRAMAÇÃO</Button> */}
           </Options>
           <LogoSemanaEnf src={logoSemanaEnf} />
         </SubscribeCard>
@@ -72,10 +74,10 @@ export default function Home() {
           <h1>Uma equipe profissional pra você.</h1>
           <Carousel
             naturalSlideWidth={100}
-            naturalSlideHeight={140}
+            naturalSlideHeight={width > 800 ? 140 : 145}
             totalSlides={9}
             infinite={true}
-            visibleSlides={3}
+            visibleSlides={width > 800 ? 3 : 1}
             isPlaying={true}
             interval={2000}
           >

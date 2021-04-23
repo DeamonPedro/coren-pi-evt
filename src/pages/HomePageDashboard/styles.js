@@ -8,8 +8,11 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: 0 50px 0 50px;
+  padding: 0 50px;
   margin-bottom: 50px;
+  @media (max-width: 800px) {
+    padding: 30px;
+  }
 `;
 
 export const Box = styled.div`
@@ -18,20 +21,24 @@ export const Box = styled.div`
   width: 100%;
   padding: 30px;
   margin-top: 30px;
+  @media (max-width: 800px) {
+    padding: 20px;
+  }
 `;
 
 export const HeaderBox = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
+  align-items: center;
   h1 {
     color: #43454f;
     font-weight: 300;
-    font-size: 26px;
+    font-size: 2.6rem;
   }
   h2 {
     color: #43454f;
-    font-size: 20px;
+    font-size: 2rem;
   }
 `;
 
@@ -41,26 +48,9 @@ export const ContainerClassInformation = styled.div`
   align-content: center;
   align-items: center;
   grid-gap: 10px;
-  ${(props) =>
-    !props.playDisabled &&
-    css`
-      cursor: pointer;
-    `};
-  &:hover {
-    .ButtonPLayClass {
-      background-color: ${(props) => !props.playDisabled && "#ff4b4b"};
-    }
-  }
-  .ButtonPLayClass {
-    ${(props) =>
-      props.playDisabled
-        ? css`
-            background-color: #e5e5e5;
-          `
-        : css`
-            cursor: pointer;
-            background-color: #044956;
-          `};
+  @media (max-width: 800px) {
+    display: flex;
+    flex-direction: column;
   }
 `;
 export const ButtonPLayClass = styled.div`
@@ -76,10 +66,22 @@ export const ButtonPLayClass = styled.div`
   align-items: center;
   justify-content: center;
   transition: 0.2s;
+  &:hover {
+    background-color: ${(props) => !props.playDisabled && "#ff4b4b"};
+  }
+  ${(props) =>
+    props.playDisabled
+      ? css`
+          background-color: #e5e5e5;
+        `
+      : css`
+          cursor: pointer;
+          background-color: #044956;
+        `};
 `;
 export const PlayIcon = styled(PlayArrowRoundedIcon)`
   && {
-    font-size: 38px;
+    font-size: 3.8rem;
     color: #fff;
   }
 `;
@@ -87,6 +89,9 @@ export const DescriptionCLass = styled.div`
   h1 {
     color: #044956;
     font-weight: 300;
+    @media (max-width: 800px) {
+      margin-bottom: 10px;
+    }
   }
   h3 {
     color: #959292;
@@ -98,8 +103,12 @@ export const DescriptionCLass = styled.div`
 `;
 export const StatusClass = styled(CheckCircleRoundedIcon)`
   && {
-    font-size: 40px;
+    font-size: 4rem;
     color: ${(props) => (props.checked ? "#34a853" : "#E5E5E5")};
+    @media (max-width: 800px) {
+      font-size: 3rem;
+      margin-left: 10px;
+    }
   }
 `;
 
@@ -108,4 +117,46 @@ export const Divider = styled.div`
   background-color: #e8e8e8;
   height: 1px;
   margin: 15px 0 15px 0;
+`;
+
+export const Button = styled.button`
+  padding: 12px 32px;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+
+  border: none;
+  margin-top: 10px;
+  color: #fff;
+  width: 100%;
+
+  ${(props) =>
+    props.playDisabled
+      ? css`
+          background-color: #e5e5e5;
+        `
+      : css`
+          cursor: pointer;
+          background-color: #044956;
+          &:hover {
+            background-color: #076475;
+          }
+        `};
+`;
+
+export const StatusClassMobile = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  span {
+    font-size: 1.8rem;
+    color: #43454f;
+  }
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 `;

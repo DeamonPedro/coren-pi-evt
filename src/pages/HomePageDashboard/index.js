@@ -10,47 +10,67 @@ import {
   StatusClass,
   PlayIcon,
   Divider,
+  Button,
+  StatusClassMobile,
 } from "./styles";
 import ProgressBar from "../../components/ProgressBar";
 import { registerPresence } from "../../services/firestore";
 import { auth } from "../../services/auth";
-
+import { useWindowDimensions } from "../../services/utils";
 const ClassInformation = ({ liveData, onClick, checked }) => {
   const { title, description, duration, startOn, speakers } = liveData;
   const date = startOn.toDate().toLocaleString().split(" ")[0];
   const hour = startOn.toDate().toLocaleString().split(" ")[1].substring(0, 5);
-
+  const { width, height } = useWindowDimensions();
   const playDisabled =
     startOn.toDate().getTime() >= Date.now() ||
     new Date("05-21-2021") <= Date.now();
 
   return (
-    <a onClick={!playDisabled && onClick}>
-      <ContainerClassInformation playDisabled={true}>
+    <ContainerClassInformation>
+      {width > 800 ? (
         <ButtonPLayClass
+          playDisabled={playDisabled}
           className="ButtonPLayClass"
           title={playDisabled && "Aula indisponível"}
+          onClick={!playDisabled && onClick}
         >
           <PlayIcon />
         </ButtonPLayClass>
-        <DescriptionCLass>
-          <h1>{title + " | " + description}</h1>
-          {speakers.map((item) => {
-            return <h3 className="speakers">{item}</h3>;
-          })}
-          <h3>{date}</h3>
+      ) : (
+        <StatusClassMobile>
+          <span>Status: </span>
+          <div>
+            <span>
+              {checked
+                ? "Concluído"
+                : playDisabled
+                ? "Indisponível"
+                : "Pendente"}
+            </span>{" "}
+            <StatusClass checked={checked} />
+          </div>
+        </StatusClassMobile>
+      )}
+      <DescriptionCLass>
+        <h1>{title + " | " + description}</h1>
+        {speakers.map((item) => {
+          return <h3 className="speakers">{item}</h3>;
+        })}
+        <h3>{date}</h3>
 
-          <h3>
-            {"Horário de início: " +
-              hour +
-              " | Duração: " +
-              duration +
-              " horas"}
-          </h3>
-        </DescriptionCLass>
+        <h3>
+          {"Horário de início: " + hour + " | Duração: " + duration + " horas"}
+        </h3>
+      </DescriptionCLass>
+      {width > 800 ? (
         <StatusClass checked={checked} />
-      </ContainerClassInformation>
-    </a>
+      ) : (
+        <Button playDisabled={playDisabled} onClick={!playDisabled && onClick}>
+          Acessar
+        </Button>
+      )}
+    </ContainerClassInformation>
   );
 };
 
@@ -83,7 +103,7 @@ export default function HomePageDashboard({ liveList, completed, refresh }) {
       </Box>
       <Box>
         <HeaderBox>
-          <h1>Presença</h1>
+          <h1>Aulas</h1>
         </HeaderBox>
         {liveList.map((live, index) => {
           const checked = completed.includes(live.id);

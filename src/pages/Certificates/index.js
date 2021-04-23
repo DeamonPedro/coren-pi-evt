@@ -12,8 +12,9 @@ import {
   DownloadIcon,
   Warning,
 } from "./styles";
-
+import { useWindowDimensions } from "../../services/utils";
 export default function HomePageDashboardADM({ unlocked }) {
+  const { width, height } = useWindowDimensions();
   return (
     <Container>
       <Box>
@@ -22,12 +23,11 @@ export default function HomePageDashboardADM({ unlocked }) {
         </HeaderBox>
         {unlocked ? (
           <CertificateBox>
-            <IconCertificate></IconCertificate>
+            {width > 800 && <IconCertificate />}
             <Description>
               <h1>Certificação Semana da Enfermagem 2021</h1>
             </Description>
             <Options>
-              <ShareIcon />
               <DownloadIcon />
             </Options>
           </CertificateBox>

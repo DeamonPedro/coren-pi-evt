@@ -10,6 +10,9 @@ export const Container = styled.div`
   justify-content: center;
   width: 100%;
   padding: 0 50px 0 50px;
+  @media (max-width: 800px) {
+    padding: 30px;
+  }
 `;
 
 export const Box = styled.div`
@@ -18,6 +21,9 @@ export const Box = styled.div`
   width: 100%;
   padding: 30px;
   margin-top: 30px;
+  @media (max-width: 800px) {
+    padding: 20px;
+  }
 `;
 
 export const HeaderBox = styled.div`
@@ -27,11 +33,11 @@ export const HeaderBox = styled.div`
   h1 {
     color: #43454f;
     font-weight: 300;
-    font-size: 26px;
+    font-size: 2.6rem;
   }
   h2 {
     color: #43454f;
-    font-size: 20px;
+    font-size: 2rem;
   }
 `;
 
@@ -40,11 +46,16 @@ export const CertificateBox = styled.div`
   grid-template-columns: 60px auto 35px;
   align-items: center;
   grid-gap: 15px;
+  @media (max-width: 800px) {
+    display: flex;
+
+    align-items: center;
+  }
 `;
 
 export const IconCertificate = styled(CardMembershipRoundedIcon)`
   && {
-    font-size: 50px;
+    font-size: 5rem;
     color: #219ce1;
   }
 `;
@@ -54,6 +65,9 @@ export const Description = styled.div`
     font-weight: 300;
     width: 300px;
     color: #43454f;
+    @media (max-width: 800px) {
+      width: 100%;
+    }
   }
 `;
 
@@ -65,7 +79,7 @@ export const Options = styled.div`
 
 export const ShareIcon = styled(SendIcon)`
   && {
-    font-size: 25px;
+    font-size: 2.5rem;
     color: #43454f;
     margin-right: 5px;
     cursor: pointer;
@@ -73,7 +87,7 @@ export const ShareIcon = styled(SendIcon)`
 `;
 export const DownloadIcon = styled(GetAppIcon)`
   && {
-    font-size: 25px;
+    font-size: 2.5rem;
     color: #43454f;
     margin-left: 5px;
     cursor: pointer;
@@ -82,5 +96,5 @@ export const DownloadIcon = styled(GetAppIcon)`
 
 export const Warning = styled.text`
   font-weight: 300;
-  font-size: 15px;
+  font-size: 1.5rem;
 `;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import {
   Container,
@@ -26,14 +26,18 @@ import { auth, Logout } from "../../services/auth";
 import { getUserData } from "../../services/firestore";
 import Certificates from "../Certificates";
 import EmailsPage from "../EmailsPage";
-
+import MenuIcon from "@material-ui/icons/Menu";
+import CloseIcon from "@material-ui/icons/Close";
+import { useWindowDimensions } from "../../services/utils";
 export default function Dashboard() {
   const { state } = useLocation();
   const history = useHistory();
   const [userData, setUserData] = useState(state);
   const [isAdm, setAdm] = useState(true);
+  const [visibleMenu, setVisibleMenu] = useState(false);
   const [menuSelected, setMenuSelected] = useState("home");
   const [liveList, setLiveList] = useState([]);
+  const { width, height } = useWindowDimensions();
 
   const loadUserData = () => {
     getUserData(auth.currentUser.uid)
@@ -54,9 +58,21 @@ export default function Dashboard() {
       .catch((err) => console.log(err));
   }, []);
 
+  useEffect(() => {
+    width > 800 ? setVisibleMenu(true) : setVisibleMenu(false);
+  }, [width]);
+
   return (
     <Container>
-      <MenuBar>
+      <MenuBar visible={visibleMenu}>
+        {width < 800 && (
+          <a
+            onClick={() => setVisibleMenu(false)}
+            style={{ position: "absolute", right: 20 }}
+          >
+            <CloseIcon style={{ fontSize: "30" }} />
+          </a>
+        )}
         <ContentAvatar>
           <Avatar src={auth.currentUser.photoURL} />
 
@@ -110,13 +126,18 @@ export default function Dashboard() {
       </MenuBar>
       <Content>
         <HeaderContent>
+          {width < 800 && (
+            <a onClick={() => setVisibleMenu(true)}>
+              <MenuIcon style={{ fontSize: "30" }} />
+            </a>
+          )}
           <Title>
             {menuSelected == "home" && "Página Inicial"}
             {menuSelected == "certificate" && "Certificados"}
             {menuSelected == "inscribes" && "Inscritos"}
             {menuSelected == "emails" && "Enviar Email"}
           </Title>
-          <LogoCoren src={logoCoren} />
+          {width > 800 && <LogoCoren src={logoCoren} />}
         </HeaderContent>
         {menuSelected == "home" && (
           <HomePageDashboard
