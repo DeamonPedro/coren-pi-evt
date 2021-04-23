@@ -13,6 +13,7 @@ import {
   HeaderContent,
   Title,
   LogoCoren,
+  Divider,
 } from "./styles";
 import HomePageDashboard from "../HomePageDashboard";
 import { getAllLivesData } from "../../services/firestore";
@@ -67,6 +68,7 @@ export default function Dashboard() {
           <AwardIcon />
           <text>Certificado</text>
         </MenuItem>
+        <Divider />
         <MenuItem
           onClick={() => Logout().then(() => history.push("/login"))}
           logout={true}

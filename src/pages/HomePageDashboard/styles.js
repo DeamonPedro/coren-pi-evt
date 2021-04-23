@@ -59,7 +59,7 @@ export const ContainerClassInformation = styled.div`
           `
         : css`
             cursor: pointer;
-            background-color: #219ce1;
+            background-color: #044956;
           `};
   }
 `;
@@ -85,7 +85,7 @@ export const PlayIcon = styled(PlayArrowRoundedIcon)`
 `;
 export const DescriptionCLass = styled.div`
   h1 {
-    color: #219ce1;
+    color: #044956;
     font-weight: 300;
   }
   h3 {

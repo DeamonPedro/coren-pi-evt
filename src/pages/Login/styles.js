@@ -71,7 +71,7 @@ export const RightContent = styled.div`
 
 export const ButtonGoogle = styled.button`
   position: relative;
-  background-color: #f5f5f5;
+  background-color: #ededed;
   border: none;
   border-radius: 10px;
   padding: 20px 0;

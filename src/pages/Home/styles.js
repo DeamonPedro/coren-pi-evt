@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import background from "../../assets/images/background.svg";
+import background from "../../assets/images/background.png";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { ButtonBack, ButtonNext, CarouselProvider } from "pure-react-carousel";
 export const Container = styled.div`
@@ -42,6 +42,7 @@ export const Button = styled.button`
   border-radius: 5px;
   font-weight: bold;
   cursor: pointer;
+  border-style: solid;
   transition: 0.3s;
   ${(props) =>
     props.outline

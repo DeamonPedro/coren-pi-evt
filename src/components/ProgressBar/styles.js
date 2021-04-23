@@ -18,6 +18,6 @@ export const LoadedBar = styled.div`
   width: ${(props) => props.percentage}%;
   height: 100%;
   transition: 0.5s;
-  background-color: #219ce1;
+  background-color: #044956;
   border-radius: 100px;
 `;
