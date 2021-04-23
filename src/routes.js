@@ -4,7 +4,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import { auth } from "./services/auth";
 import Dashboard from "./pages/Dashboard";
-
+import PageNotFound from "./pages/NotFound";
 export function Routes() {
   const [authState, setAuthState] = useState("loading");
 
@@ -44,7 +44,7 @@ export function Routes() {
         )}
         {authState !== "loading" && (
           <Route path="*">
-            <label>not found</label>
+            <PageNotFound />
           </Route>
         )}
       </Switch>

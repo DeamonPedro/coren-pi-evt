@@ -5,6 +5,7 @@ import ExitToAppTwoToneIcon from "@material-ui/icons/ExitToAppTwoTone";
 export const Container = styled.div`
   background-color: #f7f8fc;
   margin: 0;
+  min-height: 100vh;
   display: grid;
   grid-template-columns: 300px auto;
 `;
@@ -57,8 +58,9 @@ export const MenuItem = styled.button`
   ${(props) =>
     props.selected
       ? css`
-          background-color: #b8e6ff;
-          color: #007cc1;
+          font-weight: bold;
+          background-color: #044956;
+          color: #fff;
         `
       : css`
           background-color: transparent;
@@ -103,3 +105,28 @@ export const Title = styled.h1`
   color: #43454f;
 `;
 export const LogoCoren = styled.img``;
+
+export const Divider = styled.div`
+  width: 100%;
+  background-color: #e8e8e8;
+  height: 1px;
+  margin: 15px 0 15px 0;
+`;
+
+export const TagADM = styled.div`
+  position: absolute;
+  bottom: 0;
+  background-color: #fbbc05;
+  border-radius: 50px;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 3px 10px;
+`;
+export const ContentAvatar = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+`;

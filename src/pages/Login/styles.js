@@ -71,7 +71,7 @@ export const RightContent = styled.div`
 
 export const ButtonGoogle = styled.button`
   position: relative;
-  background-color: #f5f5f5;
+  background-color: #ededed;
   border: none;
   border-radius: 10px;
   padding: 20px 0;
@@ -136,14 +136,18 @@ export const ContentRegister = styled.div`
   input::-webkit-inner-spin-button {
     -webkit-appearance: none;
   }
-  input {
-    -webkit-appearance: none;
-    appearance: none;
-    border: none;
-    border-radius: 5px;
-    background-color: #f5f5f5;
-    padding: 15px;
-    font-size: 14px;
+`;
+
+export const Input = styled.input`
+  -webkit-appearance: none;
+  appearance: none;
+  border: none;
+  border-radius: 5px;
+  background-color: #f5f5f5;
+  padding: 15px;
+  font-size: 14px;
+  &.cpf {
+    color: ${(props) => (props.errorCPF ? "#000" : "#ff4b4b")};
   }
 `;
 
