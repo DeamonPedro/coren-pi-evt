@@ -69,7 +69,7 @@ export const Button = styled.button`
 
 export const SubscribeCard = styled.div`
   margin: 0 auto;
-  margin-top: 50px;
+  margin-top: 30px;
   align-items: center;
   display: flex;
   width: 100%;
@@ -94,6 +94,7 @@ export const SubscribeCard = styled.div`
     }
     span {
       width: 90%;
+      line-height: 3.5rem;
     }
   }
 `;
@@ -118,11 +119,11 @@ export const ParticipantsTab = styled.div`
   margin-bottom: 100px;
   h1 {
     margin: 0 auto;
-    width: 500px;
-    margin-top: 90px;
+    width: 550px;
+    margin-top: 50px;
     margin-bottom: 60px;
     font-weight: bold;
-    font-size: 4.8rem;
+    font-size: 3.8rem;
     line-height: 65px;
     text-align: center;
     color: #044956;
@@ -132,7 +133,7 @@ export const ParticipantsTab = styled.div`
     h1 {
       margin-top: 40px;
       font-size: 3rem;
-      line-height: 6rem;
+      line-height: 4.5rem;
       margin-bottom: 30px;
       width: 100%;
     }
@@ -284,4 +285,38 @@ export const ButtonIcon = styled.button`
 
 export const SocialNetwork = styled.div`
   display: flex;
+`;
+
+export const InformationEvent = styled.div`
+  text-indent: 70px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: 800px;
+  margin: 0 auto;
+  margin-top: 30px;
+  @media (max-width: 800px) {
+    width: 100%;
+    text-indent: 50px;
+    margin-top: 0px;
+  }
+  p {
+    margin-top: 20px;
+    font-size: 20px;
+    line-height: 39px;
+    text-align: justify;
+    color: #000000;
+
+    span {
+      font-size: 20px;
+      line-height: 39px;
+      text-align: justify;
+      color: #076475;
+      text-indent: 0px;
+      font-weight: bold;
+    }
+  }
+  a {
+    color: #1580bc;
+  }
 `;

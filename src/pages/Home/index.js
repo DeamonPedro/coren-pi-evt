@@ -22,6 +22,7 @@ import {
   RightContainer,
   FooterContent,
   ButtonIcon,
+  InformationEvent,
   SocialNetwork,
 } from "./styles";
 import { Link } from "react-router-dom";
@@ -45,6 +46,7 @@ import FacebookIcon from "@material-ui/icons/Facebook";
 import { useWindowDimensions } from "../../services/utils";
 export default function Home() {
   const { width, height } = useWindowDimensions();
+  const [expandTextMobile, setExpandTextMobile] = useState(false);
   return (
     <Container>
       <NurseBackground src={nurseBackground} />
@@ -55,11 +57,28 @@ export default function Home() {
             <Button>ENTRAR</Button>
           </Link>
         </Header>
+        <InformationEvent>
+          <LogoSemanaEnf src={logoSemanaEnf} />
+          <p>
+            O Conselho Regional de Enfermagem do Piauí - COREN – PI, apresenta
+            sua Programação para a Semana de Enfermagem – 2021(12 a 20 de maio).
+            O evento tem como tema:{" "}
+            <span>
+              Enfermagem: Uma voz para liderar – Uma visão para o futuro dos
+              cuidados de saúde.
+            </span>{" "}
+            {(width < 800) & !expandTextMobile ? (
+              <a onClick={() => setExpandTextMobile(true)}>Ver mais</a>
+            ) : (
+              "Vale ressaltar que em 2020 o governo do Estado do Piauí sancionou a Lei nº 7.412 que institui e inclui no Calendário Oficial do Estado do Piauí a Semana de Enfermagem.A lei é uma grande conquista da categoria, representa o reconhecimento da importância da Enfermagem para a sociedade."
+            )}
+          </p>
+        </InformationEvent>
         <SubscribeCard>
           <h1>Inscreva-se Já!</h1>
           <span>
-            Nesta semana disponibilizamos um curso gratuito para você
-            enfermeiro, inscreva-se ja!
+            Nesta semana (12 a 20) disponibilizaremos um curso gratuito para
+            você profissional de enfermagem, inscreva-se ja!
           </span>
           <Options>
             <Link to="/login">
@@ -67,11 +86,10 @@ export default function Home() {
             </Link>
             {/* <Button outline={true}>PROGRAMAÇÃO</Button> */}
           </Options>
-          <LogoSemanaEnf src={logoSemanaEnf} />
         </SubscribeCard>
         <AboutTab></AboutTab>
         <ParticipantsTab>
-          <h1>Uma equipe profissional pra você.</h1>
+          <h1>Uma equipe de profissionais renomados para você.</h1>
           <Carousel
             naturalSlideWidth={100}
             naturalSlideHeight={width > 800 ? 140 : 145}
