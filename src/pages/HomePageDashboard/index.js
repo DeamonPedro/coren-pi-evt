@@ -47,8 +47,6 @@ const ClassInformation = ({ liveData, onClick, checked }) => {
 export default function HomePageDashboard({ liveList, completed, refresh }) {
   const [percentage, setPercentage] = useState(0);
 
-  console.log(completed);
-
   const playLiveVideo = (checked, live) => {
     window.open(live.url, "_blank").focus();
     if (!checked) {

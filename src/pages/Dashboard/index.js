@@ -20,14 +20,16 @@ import logoCoren from "../../assets/images/logoCoren.png";
 import { useHistory, useLocation } from "react-router-dom";
 import { auth, Logout } from "../../services/auth";
 import { getUserData } from "../../services/firestore";
-import Certificates from "../Certificates";
+import Certificates from "../Certificate";
 
 export default function Dashboard() {
   const { state } = useLocation();
   const history = useHistory();
-  const [userData, setUserData] = useState(state);
+  const [userData, setUserData] = useState(state ? state : null);
   const [menuSelected, setMenuSelected] = useState("home");
   const [liveList, setLiveList] = useState([]);
+
+  console.log(userData);
 
   const loadUserData = () => {
     getUserData(auth.currentUser.uid)
@@ -36,6 +38,7 @@ export default function Dashboard() {
       })
       .catch((error) => {
         console.log(error);
+        history.push("/login");
       });
   };
 
@@ -50,52 +53,61 @@ export default function Dashboard() {
 
   return (
     <Container>
-      <MenuBar>
-        <Avatar src={auth.currentUser.photoURL} />
-        <Name>{auth.currentUser.displayName}</Name>
-        <MenuItem
-          onClick={() => setMenuSelected("home")}
-          selected={menuSelected == "home" && true}
-        >
-          <HomeIcon />
-          <text>Página inicial</text>
-        </MenuItem>
-        <MenuItem
-          onClick={() => setMenuSelected("certificate")}
-          selected={menuSelected == "certificate" && true}
-        >
-          <AwardIcon />
-          <text>Certificado</text>
-        </MenuItem>
-        <MenuItem
-          onClick={() => Logout().then(() => history.push("/login"))}
-          logout={true}
-        >
-          <ExitIcon />
-          <text>Sair</text>
-        </MenuItem>
-      </MenuBar>
-      <Content>
-        <HeaderContent>
-          <Title>
-            {menuSelected == "home" ? "Página Inicial" : "Certificados"}
-          </Title>
-          <LogoCoren src={logoCoren} />
-        </HeaderContent>
-        {menuSelected == "home" ? (
-          <HomePageDashboard
-            liveList={liveList}
-            refresh={loadUserData}
-            completed={userData.completed}
-          />
-        ) : (
-          <Certificates
-            unlocked={liveList.every((live) =>
-              userData.completed.includes(live.id)
+      {userData && (
+        <>
+          <MenuBar>
+            <Avatar src={auth.currentUser.photoURL} />
+            <Name>
+              {userData.nameComplete !== null
+                ? userData.nameComplete
+                : auth.currentUser.displayName}
+            </Name>
+            <MenuItem
+              onClick={() => setMenuSelected("home")}
+              selected={menuSelected == "home" && true}
+            >
+              <HomeIcon />
+              <text>Página inicial</text>
+            </MenuItem>
+            <MenuItem
+              onClick={() => setMenuSelected("certificate")}
+              selected={menuSelected == "certificate" && true}
+            >
+              <AwardIcon />
+              <text>Certificado</text>
+            </MenuItem>
+            <MenuItem
+              onClick={() => Logout().then(() => history.push("/login"))}
+              logout={true}
+            >
+              <ExitIcon />
+              <text>Sair</text>
+            </MenuItem>
+          </MenuBar>
+          <Content>
+            <HeaderContent>
+              <Title>
+                {menuSelected == "home" ? "Página Inicial" : "Certificados"}
+              </Title>
+              <LogoCoren src={logoCoren} />
+            </HeaderContent>
+            {menuSelected == "home" ? (
+              <HomePageDashboard
+                liveList={liveList}
+                refresh={loadUserData}
+                completed={userData.completed}
+              />
+            ) : (
+              <Certificates
+                name={userData.nameComplete}
+                unlocked={liveList.every((live) =>
+                  userData.completed.includes(live.id)
+                )}
+              />
             )}
-          />
-        )}
-      </Content>
+          </Content>
+        </>
+      )}
     </Container>
   );
 }

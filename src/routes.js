@@ -35,10 +35,10 @@ export function Routes() {
         {authState === "authenticated" && [
           <Route exact path="/dashboard">
             <Dashboard />
-          </Route>
+          </Route>,
         ]}
         {authState === "not authenticated" && (
-          <Route path="/dashboard*">
+          <Route path="/dashboard">
             <Redirect to="/login" />
           </Route>
         )}
