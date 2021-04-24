@@ -16,4 +16,25 @@ export const Container = styled.div`
   }
 `;
 
-export const DayContainer = styled.div``;
+export const DayContainer = styled.div`
+  div.day {
+    width: 100%;
+  }
+
+  div.information {
+    h1 {
+      color: #044956;
+      font-weight: 300;
+      @media (max-width: 800px) {
+        margin-bottom: 10px;
+      }
+    }
+    h3 {
+      color: #959292;
+      font-weight: 300;
+    }
+    .speakers {
+      color: #000;
+    }
+  }
+`;
