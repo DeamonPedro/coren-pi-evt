@@ -5,12 +5,15 @@ export const Container = styled.div`
   width: 100%;
   min-height: 100vh;
   padding: 30px 0;
-  align-items: center;
+  align-items: flex-start;
   display: flex;
   justify-content: center;
   background-color: #fcfcfc;
-  @media (max-width: 800px) {
-    padding: 0;
-    background-color: #fff;
+  h1 {
+    font-weight: bold;
+    font-size: 2.8rem;
+    color: #43454f;
   }
 `;
+
+export const DayContainer = styled.div``;
