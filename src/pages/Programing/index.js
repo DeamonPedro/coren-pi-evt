@@ -13,7 +13,7 @@ export default function Programing() {
       })
       .catch((err) => console.log(err));
   }, []);
-
+  window.scrollTo(0, 0);
   return (
     <Container>
       <h1 className="title">Programação</h1>
