@@ -89,7 +89,9 @@ export default function Dashboard() {
             <Name>{auth.currentUser.displayName}</Name>
 
             <MenuItem
-              onClick={() => (setMenuSelected("home"), setVisibleMenu(false))}
+              onClick={() => (
+                setMenuSelected("home"), width < 800 && setVisibleMenu(false)
+              )}
               selected={menuSelected == "home" && true}
             >
               <HomeIcon />
@@ -97,7 +99,8 @@ export default function Dashboard() {
             </MenuItem>
             <MenuItem
               onClick={() => (
-                setMenuSelected("certificate"), setVisibleMenu(false)
+                setMenuSelected("certificate"),
+                width < 800 && setVisibleMenu(false)
               )}
               selected={menuSelected == "certificate" && true}
             >
@@ -118,7 +121,8 @@ export default function Dashboard() {
                 </MenuItem>
                 <MenuItem
                   onClick={() => (
-                    setMenuSelected("emails"), setVisibleMenu(false)
+                    setMenuSelected("emails"),
+                    width < 800 && setVisibleMenu(false)
                   )}
                   selected={menuSelected == "emails" && true}
                 >

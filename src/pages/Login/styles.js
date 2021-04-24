@@ -68,7 +68,7 @@ export const LeftContent = styled.div`
 `;
 
 export const RightContent = styled.div`
-  background-color: #9ef0ff;
+  background-color: #75b2bd;
   height: 100%;
   display: flex;
   align-items: flex-end;
