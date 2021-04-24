@@ -33,7 +33,7 @@ export function Routes() {
         <Route exact path="/login">
           <Login />
         </Route>
-        <Route exact path="/progamacao">
+        <Route exact path="/programacao">
           <Programing />
         </Route>
         {authState === "authenticated" && [

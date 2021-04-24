@@ -77,7 +77,7 @@ export default function Home() {
         <SubscribeCard>
           <h1>Inscreva-se Já!</h1>
           <span>
-            Nesta semana (12 a 20) disponibilizaremos um curso gratuito para
+            Nesta semana (12 a 20/5) disponibilizaremos um curso gratuito para
             você profissional de enfermagem, inscreva-se ja!
           </span>
           <Options>
