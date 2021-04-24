@@ -39,7 +39,7 @@ export const LogoCoren = styled.img``;
 const scaleOpening = keyframes`
   from {
    opacity: 0;
-margin-top: 0px;
+   margin-top: 0px;
   }
   to {
     opacity: 1;

@@ -53,7 +53,7 @@ export default function Certificate({ unlocked, name }) {
     <Container>
       <Box>
         <HeaderBox>
-          <h1>Inscritos</h1>
+          <h1>Seu certificado</h1>
         </HeaderBox>
         {unlocked ? (
           <CertificateBox>

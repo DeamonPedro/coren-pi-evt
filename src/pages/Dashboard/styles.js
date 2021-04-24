@@ -96,23 +96,37 @@ export const MenuItem = styled.button`
     margin-left: 10px;
     font-size: 1.4rem;
   }
+  @media (max-width: 800px) {
+    text {
+      font-size: 1.8rem;
+    }
+  }
 `;
 
 export const HomeIcon = styled(HomeOutlinedIcon)`
   && {
     font-size: 1.8rem;
+    @media (max-width: 800px) {
+      font-size: 2.4rem;
+    }
   }
 `;
 
 export const AwardIcon = styled(CardMembershipIcon)`
   && {
     font-size: 1.8rem;
+    @media (max-width: 800px) {
+      font-size: 2.4rem;
+    }
   }
 `;
 
 export const ExitIcon = styled(ExitToAppTwoToneIcon)`
   && {
     font-size: 1.8rem;
+    @media (max-width: 800px) {
+      font-size: 2.4rem;
+    }
   }
 `;
 

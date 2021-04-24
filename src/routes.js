@@ -5,6 +5,7 @@ import Login from "./pages/Login";
 import { auth } from "./services/auth";
 import Dashboard from "./pages/Dashboard";
 import PageNotFound from "./pages/NotFound";
+import Programing from "./pages/Programing";
 export function Routes() {
   const [authState, setAuthState] = useState("loading");
 
@@ -31,6 +32,9 @@ export function Routes() {
         </Route>
         <Route exact path="/login">
           <Login />
+        </Route>
+        <Route exact path="/progamacao">
+          <Programing />
         </Route>
         {authState === "authenticated" && [
           <Route exact path="/dashboard">
