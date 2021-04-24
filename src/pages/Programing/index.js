@@ -1,6 +1,17 @@
 import React from "react";
 
 import { Container, DayContainer, Divider } from "./styles";
+import { getAllLivesData } from "../../services/firestore";
+
+const [liveList, setLiveList] = useState([]);
+
+React.useEffect(() => {
+  getAllLivesData()
+    .then((list) => {
+      setLiveList(list);
+    })
+    .catch((err) => console.log(err));
+}, []);
 
 export default function Programing() {
   return (

@@ -99,11 +99,18 @@ export const getAnalytics = () => {
       const student = (
         await usersCollection.where("nurse", "==", "student").get()
       ).docs.length;
+
+      const certified = (
+        await usersCollection
+          .where("completed", "array-contains", "O1m22MV0hy09LOW2vXC1")
+          .get()
+      ).docs.length;
       resolve({
         nurse,
         nursingTec,
         nursingAssist,
         student,
+        certified,
         total: nurse + nursingTec + nursingAssist + student,
       });
     } catch (error) {
