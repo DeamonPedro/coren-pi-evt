@@ -160,19 +160,6 @@ export default function Home() {
         <FooterContent>
           <LeftContainer>
             <LogoCoren src={logoCoren} />
-            <span>
-              Desenvolvido por:{" "}
-              <a
-                style={{ cursor: "pointer" }}
-                onClick={() =>
-                  window.open("https://www.instagram.com/keracomunicacao")
-                }
-              >
-                Agência KERA
-              </a>
-            </span>
-          </LeftContainer>
-          <RightContainer>
             <SocialNetwork>
               <a
                 onClick={() =>
@@ -191,7 +178,19 @@ export default function Home() {
                 </ButtonIcon>
               </a>
             </SocialNetwork>
-
+          </LeftContainer>
+          <RightContainer>
+            <span>
+              Desenvolvido por:{" "}
+              <a
+                style={{ cursor: "pointer" }}
+                onClick={() =>
+                  window.open("https://www.instagram.com/keracomunicacao")
+                }
+              >
+                Agência KERA
+              </a>
+            </span>
             <span>Copyright 2021 Conselho Regional de Enfermagem do Piauí</span>
           </RightContainer>
         </FooterContent>

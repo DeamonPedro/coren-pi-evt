@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 import background from "../../assets/images/background.png";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { ButtonBack, ButtonNext, CarouselProvider } from "pure-react-carousel";
@@ -7,6 +7,7 @@ export const Container = styled.div`
   background-repeat: repeat;
   margin: 0 auto;
   width: 100%;
+  transition: 0.3s;
 `;
 
 export const Content = styled.div`
@@ -35,10 +36,20 @@ export const Header = styled.div`
 `;
 
 export const LogoCoren = styled.img``;
-
+const scaleOpening = keyframes`
+  from {
+   opacity: 0;
+margin-top: 0px;
+  }
+  to {
+    opacity: 1;
+    margin-top: 50px;
+  }
+`;
 export const LogoSemanaEnf = styled.img`
   margin-top: 50px;
   width: 90%;
+  animation: ${scaleOpening} 2s ease normal;
 `;
 
 export const Button = styled.button`
@@ -203,7 +214,7 @@ export const Footer = styled.div`
   height: 100px;
   background-color: #fff;
   @media (max-width: 800px) {
-    height: 180px;
+    height: 120px;
   }
 `;
 
@@ -214,6 +225,7 @@ export const FooterContent = styled.div`
   padding: 20px 20px 20px 20px;
   display: flex;
   height: 110px;
+  flex-direction: column;
   justify-content: space-between;
   @media (max-width: 800px) {
     flex-direction: column;
@@ -221,38 +233,45 @@ export const FooterContent = styled.div`
 `;
 export const LeftContainer = styled.div`
   display: flex;
-  flex-direction: column;
+  align-items: center;
   height: 100%;
   justify-content: space-between;
   img {
     width: 130px;
     margin-bottom: 5px;
+    @media (max-width: 800px) {
+      width: 100px;
+      height: 28px;
+    }
   }
   span {
     font-weight: normal;
     font-size: 1.4rem;
     color: #5f5f5f;
-    a {
-      color: #044956;
-    }
   }
 `;
 
 export const RightContainer = styled.div`
   align-items: flex-end;
   display: flex;
-  flex-direction: column;
   height: 100%;
   justify-content: space-between;
   @media (max-width: 800px) {
     align-items: flex-start;
-    margin-top: 15px;
+    margin-top: 10px;
     margin-bottom: 10px;
+    flex-direction: column-reverse;
   }
   span {
     font-weight: normal;
     font-size: 1.4rem;
     color: #5f5f5f;
+    @media (max-width: 800px) {
+      font-size: 1.3rem;
+    }
+    a {
+      color: #044956;
+    }
   }
 `;
 
@@ -294,6 +313,7 @@ export const InformationEvent = styled.div`
   flex-direction: column;
   width: 800px;
   margin: 0 auto;
+  transition: 0.3s;
   margin-top: 30px;
   @media (max-width: 800px) {
     width: 100%;
@@ -318,5 +338,20 @@ export const InformationEvent = styled.div`
   }
   a {
     color: #1580bc;
+  }
+`;
+
+export const Loading = styled.div`
+  position: fixed;
+  z-index: 999;
+  height: 100%;
+  width: 100%;
+  background-color: #fff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  img {
+    width: 200px;
   }
 `;
