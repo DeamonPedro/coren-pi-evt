@@ -64,3 +64,50 @@ export const registerPresence = (userID, liveID) => {
       });
   });
 };
+
+export const searchUserByCPF = (CPF) => {
+  return new Promise((resolve, reject) => {
+    usersCollection
+      .where("CPF", "==", CPF)
+      .get()
+      .then((docList) => {
+        if (docList.docs.length) {
+          const userData = docList.docs[0];
+          resolve({
+            id: userData.id,
+            ...userData.data(),
+          });
+        } else {
+          reject("not exist");
+        }
+      })
+      .catch((err) => reject(err));
+  });
+};
+
+export const getAnalytics = () => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const nurse = (await usersCollection.where("nurse", "==", "nurse").get())
+        .docs.length;
+      const nursingTec = (
+        await usersCollection.where("nurse", "==", "nursingTec").get()
+      ).docs.length;
+      const nursingAssist = (
+        await usersCollection.where("nurse", "==", "nursingAssist").get()
+      ).docs.length;
+      const student = (
+        await usersCollection.where("nurse", "==", "student").get()
+      ).docs.length;
+      resolve({
+        nurse,
+        nursingTec,
+        nursingAssist,
+        student,
+        total: nurse + nursingTec + nursingAssist + student,
+      });
+    } catch (error) {
+      reject(error);
+    }
+  });
+};

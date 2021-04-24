@@ -37,15 +37,11 @@ export default function Dashboard() {
 
   const [userData, setUserData] = useState(state ? state : null);
 
-  const [isAdm, setAdm] = useState(true);
-
   const [visibleMenu, setVisibleMenu] = useState(false);
 
   const [menuSelected, setMenuSelected] = useState("home");
   const [liveList, setLiveList] = useState([]);
   const { width, height } = useWindowDimensions();
-
-  console.log(userData);
 
   const loadUserData = () => {
     getUserData(auth.currentUser.uid)
@@ -87,7 +83,7 @@ export default function Dashboard() {
             <ContentAvatar>
               <Avatar src={auth.currentUser.photoURL} />
 
-              {isAdm && <TagADM>Administrador</TagADM>}
+              {userData.admin && <TagADM>Administrador</TagADM>}
             </ContentAvatar>
 
             <Name>{auth.currentUser.displayName}</Name>
@@ -109,13 +105,13 @@ export default function Dashboard() {
               <text>Certificados</text>
             </MenuItem>
 
-            {isAdm && (
+            {userData.admin && (
               <>
                 <MenuItem
                   onClick={() => (
-                    setMenuSelected("inscribes"), setVisibleMenu(false)
+                    setMenuSelected("subscribers"), setVisibleMenu(false)
                   )}
-                  selected={menuSelected == "inscribes" && true}
+                  selected={menuSelected == "subscribers" && true}
                 >
                   <HomeIcon />
                   <text>Usuários</text>
@@ -151,7 +147,7 @@ export default function Dashboard() {
               <Title>
                 {menuSelected == "home" && "Página Inicial"}
                 {menuSelected == "certificate" && "Certificados"}
-                {menuSelected == "inscribes" && "Inscritos"}
+                {menuSelected == "subscribers" && "Inscritos"}
                 {menuSelected == "emails" && "Enviar Email"}
               </Title>
               {width > 800 && <LogoCoren src={logoCoren} />}
@@ -170,7 +166,7 @@ export default function Dashboard() {
                 )}
               />
             )}
-            {menuSelected == "inscribes" && <HomePageDashboardADM />}
+            {menuSelected == "subscribers" && <HomePageDashboardADM />}
             {menuSelected == "emails" && <EmailsPage />}
           </Content>
         </>

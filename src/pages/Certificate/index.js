@@ -18,6 +18,7 @@ import { auth } from "../../services/auth";
 import { useWindowDimensions } from "../../services/utils";
 export default function Certificate({ unlocked, name }) {
   const { width, height } = useWindowDimensions();
+
   const downloadCertificate = () => {
     const canvas = document.createElement("canvas");
     const base_image = new Image();
@@ -45,7 +46,16 @@ export default function Certificate({ unlocked, name }) {
         pdf.internal.pageSize.getWidth(),
         pdf.internal.pageSize.getHeight()
       );
-      pdf.save("download.pdf");
+      if (
+        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+          navigator.userAgent
+        )
+      ) {
+        var blob = pdf.output();
+        window.open(URL.createObjectURL(blob));
+      } else {
+        pdf.save("certificado.pdf");
+      }
     };
   };
 
