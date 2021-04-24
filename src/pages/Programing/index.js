@@ -1,11 +1,11 @@
 import React from "react";
 
-import { Container, DayContainer } from "./styles";
+import { Container, DayContainer, Divider } from "./styles";
 
 export default function Programing() {
   return (
     <Container>
-      <h1>Programação</h1>
+      <h1 className="title">Programação</h1>
 
       <DayContainer>
         <div className="day">
@@ -24,6 +24,7 @@ export default function Programing() {
           </h3>
         </div>
       </DayContainer>
+      <Divider />
     </Container>
   );
 }

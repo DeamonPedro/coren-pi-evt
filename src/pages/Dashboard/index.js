@@ -112,7 +112,8 @@ export default function Dashboard() {
               <>
                 <MenuItem
                   onClick={() => (
-                    setMenuSelected("subscribers"), setVisibleMenu(false)
+                    setMenuSelected("subscribers"),
+                    width < 800 && setVisibleMenu(false)
                   )}
                   selected={menuSelected == "subscribers" && true}
                 >
