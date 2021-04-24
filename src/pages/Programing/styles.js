@@ -5,7 +5,6 @@ export const Container = styled.div`
   width: 100%;
   min-height: 100vh;
   padding: 30px 0;
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,7 +14,7 @@ export const Container = styled.div`
     font-weight: bold;
     font-size: 2.8rem;
     color: #43454f;
-    margin-bottom: 100px;
+    margin-bottom: 70px;
     @media (max-width: 800px) {
       margin-bottom: 50px;
     }
@@ -42,12 +41,14 @@ export const DayContainer = styled.div`
     margin-right: 15px;
     @media (max-width: 800px) {
       height: 50px;
-      width: 50px;
+      width: 60px;
       font-size: 1.4rem;
+      margin-right: 10px;
     }
   }
 
   div.information {
+    width: 100%;
     h1 {
       color: #044956;
       font-weight: 300;

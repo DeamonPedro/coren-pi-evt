@@ -84,7 +84,9 @@ export default function Home() {
             <Link to="/login">
               <Button to="/login">INSCREVER-SE</Button>
             </Link>
-            {/* <Button outline={true}>PROGRAMAÇÃO</Button> */}
+            <Link to="/programacao">
+              <Button outline={true}>PROGRAMAÇÃO</Button>
+            </Link>
           </Options>
         </SubscribeCard>
         <AboutTab></AboutTab>
