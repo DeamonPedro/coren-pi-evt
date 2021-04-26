@@ -4,6 +4,7 @@ const firestore = firebase.firestore();
 
 const usersCollection = firestore.collection("users");
 const livesCollection = firestore.collection("lives");
+const emailsSendedCollection = firestore.collection("emailsSended");
 
 export const getUserData = async (userID) => {
   return new Promise((resolve, reject) => {
@@ -116,5 +117,19 @@ export const getAnalytics = () => {
     } catch (error) {
       reject(error);
     }
+  });
+};
+
+export const createEmail = (subject, content) => {
+  return new Promise((resolve, reject) => {
+    emailsSendedCollection
+      .add({
+        subject,
+        content,
+      })
+      .then(() => resolve())
+      .catch((err) => {
+        reject(err);
+      });
   });
 };
