@@ -117,7 +117,7 @@ export default function Login() {
         <ContentLogin>
           <LeftContent>
             <img src={logoCoren} />
-            <h1>Login / Registro</h1>
+            <h1>Inscrição / Login</h1>
             <span>
               Acesse pela sua conta do Google. Se for sua primeira vez na nossa
               plataforma, preencha seus dados após o login.

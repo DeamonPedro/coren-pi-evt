@@ -94,7 +94,7 @@ export default function HomePageDashboard({ liveList, completed, refresh }) {
 
   return (
     <Container>
-      <Box style={{ backgroundColor: "#E8C824" }}>
+      {/* <Box style={{ backgroundColor: "#E8C824" }}>
         <div className="groupWarning">
           <div className="groupDescriptionWarning">
             <h1 className="verify">Verifique seus dados para certificação</h1>
@@ -105,7 +105,7 @@ export default function HomePageDashboard({ liveList, completed, refresh }) {
           </div>
           <Button className="warning">Conferir</Button>
         </div>
-      </Box>
+      </Box> */}
       <Box>
         <HeaderBox>
           <h1>Progresso</h1>
