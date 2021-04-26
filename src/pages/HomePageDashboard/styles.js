@@ -24,7 +24,7 @@ export const Box = styled.div`
   @media (max-width: 800px) {
     padding: 20px;
   }
-  h3 {
+  h3.warningDescription {
     color: #fff;
     font-size: 1.8rem;
     font-weight: normal;
