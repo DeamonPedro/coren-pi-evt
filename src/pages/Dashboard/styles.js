@@ -56,7 +56,8 @@ export const Avatar = styled.img`
 `;
 export const Name = styled.text`
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 1.6rem;
+  margin-top: 5px;
   margin-bottom: 20px;
 `;
 export const MenuItem = styled.button`

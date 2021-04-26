@@ -54,7 +54,7 @@ export default function Certificate({ unlocked, name }) {
         )
       ) {
         var blob = pdf.output();
-        window.open(URL.createObjectURL(blob));
+        window.open(window.URL.createObjectURL(blob));
         setLoadingCertificate(false);
       } else {
         pdf
@@ -78,9 +78,10 @@ export default function Certificate({ unlocked, name }) {
             </Description>
             <Options>
               <Button
-                onClick={() => (
-                  downloadCertificate(), setLoadingCertificate(true)
-                )}
+                onClick={() =>
+                  !isLoadingCertificate &&
+                  (downloadCertificate(), setLoadingCertificate(true))
+                }
               >
                 {isLoadingCertificate ? (
                   <Loading size={20} />
