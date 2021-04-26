@@ -11,6 +11,8 @@ import {
   ShareIcon,
   DownloadIcon,
   Warning,
+  Button,
+  Loading,
 } from "./styles";
 import CertificateTemplate from "../../assets/images/certificado_evento_coren.png";
 import { jsPDF } from "jspdf";
@@ -18,7 +20,7 @@ import { auth } from "../../services/auth";
 import { useWindowDimensions } from "../../services/utils";
 export default function Certificate({ unlocked, name }) {
   const { width, height } = useWindowDimensions();
-
+  const [isLoadingCertificate, setLoadingCertificate] = useState();
   const downloadCertificate = () => {
     const canvas = document.createElement("canvas");
     const base_image = new Image();
@@ -53,8 +55,11 @@ export default function Certificate({ unlocked, name }) {
       ) {
         var blob = pdf.output();
         window.open(URL.createObjectURL(blob));
+        setLoadingCertificate(false);
       } else {
-        pdf.save("certificado.pdf");
+        pdf
+          .save("certificado.pdf", { returnPromise: true })
+          .then(() => setLoadingCertificate(false));
       }
     };
   };
@@ -72,7 +77,20 @@ export default function Certificate({ unlocked, name }) {
               <h1>Certificação Semana da Enfermagem 2021</h1>
             </Description>
             <Options>
-              <DownloadIcon onClick={downloadCertificate} />
+              <Button
+                onClick={() => (
+                  downloadCertificate(), setLoadingCertificate(true)
+                )}
+              >
+                {isLoadingCertificate ? (
+                  <Loading size={20} />
+                ) : (
+                  <>
+                    Fazer download
+                    <DownloadIcon />
+                  </>
+                )}
+              </Button>
             </Options>
           </CertificateBox>
         ) : (

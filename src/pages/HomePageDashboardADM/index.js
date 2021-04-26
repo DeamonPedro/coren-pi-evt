@@ -58,7 +58,7 @@ export default function HomePageDashboardADM() {
 
               <div className="information">
                 <Skeleton>
-                  <h1>Rainan carneiro araújo</h1>
+                  <h1>Rainan Carneiro Araújo</h1>
                 </Skeleton>
                 <Skeleton>
                   <span>Ocupação: Estudante</span>

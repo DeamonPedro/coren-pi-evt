@@ -105,7 +105,7 @@ export default function Dashboard() {
               selected={menuSelected == "certificate" && true}
             >
               <AwardIcon />
-              <text>Certificados</text>
+              <text>Certificado</text>
             </MenuItem>
 
             {userData.admin && (
@@ -151,7 +151,7 @@ export default function Dashboard() {
               )}
               <Title>
                 {menuSelected == "home" && "Página Inicial"}
-                {menuSelected == "certificate" && "Certificados"}
+                {menuSelected == "certificate" && "Certificado"}
                 {menuSelected == "subscribers" && "Usuários"}
                 {menuSelected == "emails" && "Enviar Email"}
               </Title>

@@ -44,12 +44,12 @@ export const HeaderBox = styled.div`
 
 export const CertificateBox = styled.div`
   display: grid;
-  grid-template-columns: 60px auto 35px;
+  grid-template-columns: 60px auto auto;
   align-items: center;
   grid-gap: 15px;
   @media (max-width: 800px) {
     display: flex;
-
+    flex-direction: column;
     align-items: center;
   }
 `;
@@ -57,7 +57,7 @@ export const CertificateBox = styled.div`
 export const IconCertificate = styled(CardMembershipRoundedIcon)`
   && {
     font-size: 5rem;
-    color: #219ce1;
+    color: #044956;
   }
 `;
 
@@ -75,7 +75,10 @@ export const Description = styled.div`
 export const Options = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
+  @media (max-width: 800px) {
+    width: 100%;
+  }
 `;
 
 export const ShareIcon = styled(SendIcon)`
@@ -89,8 +92,8 @@ export const ShareIcon = styled(SendIcon)`
 export const DownloadIcon = styled(GetAppIcon)`
   && {
     font-size: 2.5rem;
-    color: #43454f;
-    margin-left: 5px;
+    color: #fff;
+    margin-left: 15px;
     cursor: pointer;
   }
 `;
@@ -102,6 +105,21 @@ export const Warning = styled.text`
 
 export const Loading = styled(CircularProgress)`
   && {
-    color: #044956;
+    color: #fff;
+  }
+`;
+
+export const Button = styled.button`
+  border: none;
+  background-color: #044956;
+  padding: 12px 32px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1.6rem;
+  @media (max-width: 800px) {
+    width: 100%;
   }
 `;
