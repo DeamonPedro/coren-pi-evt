@@ -2,6 +2,8 @@ import styled, { css } from "styled-components";
 import HomeOutlinedIcon from "@material-ui/icons/HomeOutlined";
 import CardMembershipIcon from "@material-ui/icons/CardMembership";
 import ExitToAppTwoToneIcon from "@material-ui/icons/ExitToAppTwoTone";
+import PeopleAltIcon from "@material-ui/icons/PeopleAlt";
+import MailOutlineIcon from "@material-ui/icons/MailOutline";
 export const Container = styled.div`
   background-color: #f7f8fc;
   margin: 0;
@@ -176,5 +178,23 @@ export const ContentAvatar = styled.div`
   position: relative;
   @media (max-width: 800px) {
     padding-top: 40px;
+  }
+`;
+
+export const People = styled(PeopleAltIcon)`
+  && {
+    font-size: 1.8rem;
+    @media (max-width: 800px) {
+      font-size: 2.4rem;
+    }
+  }
+`;
+
+export const Email = styled(MailOutlineIcon)`
+  && {
+    font-size: 1.8rem;
+    @media (max-width: 800px) {
+      font-size: 2.4rem;
+    }
   }
 `;

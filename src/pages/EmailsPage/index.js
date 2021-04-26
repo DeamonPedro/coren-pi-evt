@@ -12,7 +12,9 @@ import {
 } from "./styles";
 
 export default function EmailsPage() {
-  const [subject, setSubject] = useState("COREN-PI | ");
+  const [subject, setSubject] = useState(
+    "COREN-PI: SEMANA DA ENFERMAGEM 2021 | "
+  );
   const [content, setContent] = useState("");
   const [isLoading, setLoading] = useState(false);
   const [isEmailSend, setEmailSend] = useState(false);

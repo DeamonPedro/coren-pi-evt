@@ -16,6 +16,8 @@ import {
   Divider,
   TagADM,
   ContentAvatar,
+  People,
+  Email,
 } from "./styles";
 import HomePageDashboard from "../HomePageDashboard";
 import HomePageDashboardADM from "../HomePageDashboardADM";
@@ -117,7 +119,7 @@ export default function Dashboard() {
                   )}
                   selected={menuSelected == "subscribers" && true}
                 >
-                  <HomeIcon />
+                  <People />
                   <text>Usuários</text>
                 </MenuItem>
                 <MenuItem
@@ -127,7 +129,7 @@ export default function Dashboard() {
                   )}
                   selected={menuSelected == "emails" && true}
                 >
-                  <HomeIcon />
+                  <Email />
                   <text>Enviar Email</text>
                 </MenuItem>
               </>
