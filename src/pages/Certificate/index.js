@@ -95,7 +95,7 @@ export default function Certificate({ unlocked, name }) {
             </Options>
           </CertificateBox>
         ) : (
-          <Warning>Conclua o curso para o certificado está disponível</Warning>
+          <Warning>O certificado estará disponível ao final do evento.</Warning>
         )}
       </Box>
     </Container>

@@ -24,6 +24,40 @@ export const Box = styled.div`
   @media (max-width: 800px) {
     padding: 20px;
   }
+  h3 {
+    color: #fff;
+    font-size: 1.8rem;
+    font-weight: normal;
+    @media (max-width: 800px) {
+      text-align: center;
+    }
+  }
+  h1.verify {
+    color: #1b1705;
+    font-weight: bold;
+    font-size: 2.6rem;
+    margin-bottom: 10px;
+    @media (max-width: 800px) {
+      text-align: center;
+    }
+  }
+  .groupDescriptionWarning {
+  }
+  .warning {
+    background-color: #fff;
+    color: #e8c824;
+    &:hover {
+      background-color: #e5e5e5;
+    }
+  }
+  .groupWarning {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    @media (max-width: 800px) {
+      flex-direction: column;
+    }
+  }
 `;
 
 export const HeaderBox = styled.div`
@@ -129,8 +163,10 @@ export const Button = styled.button`
   border: none;
   margin-top: 10px;
   color: #fff;
-  width: 100%;
 
+  @media (max-width: 800px) {
+    width: 100%;
+  }
   ${(props) =>
     props.playDisabled
       ? css`

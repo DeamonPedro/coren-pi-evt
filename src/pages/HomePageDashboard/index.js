@@ -17,6 +17,7 @@ import ProgressBar from "../../components/ProgressBar";
 import { registerPresence } from "../../services/firestore";
 import { auth } from "../../services/auth";
 import { useWindowDimensions } from "../../services/utils";
+
 const ClassInformation = ({ liveData, onClick, checked }) => {
   const { title, description, duration, startOn, speakers } = liveData;
   const date = startOn.toDate().toLocaleString().split(" ")[0];
@@ -25,7 +26,6 @@ const ClassInformation = ({ liveData, onClick, checked }) => {
   const playDisabled =
     startOn.toDate().getTime() >= Date.now() ||
     new Date("05-21-2021") <= Date.now();
-
   return (
     <ContainerClassInformation>
       {width > 800 ? (
@@ -94,6 +94,18 @@ export default function HomePageDashboard({ liveList, completed, refresh }) {
 
   return (
     <Container>
+      <Box style={{ backgroundColor: "#E8C824" }}>
+        <div className="groupWarning">
+          <div className="groupDescriptionWarning">
+            <h1 className="verify">Verifique seus dados para certificação</h1>
+            <h3>
+              É importante que você confira seus dados para evitar problemas de
+              certificação.
+            </h3>
+          </div>
+          <Button className="warning">Conferir</Button>
+        </div>
+      </Box>
       <Box>
         <HeaderBox>
           <h1>Progresso</h1>
