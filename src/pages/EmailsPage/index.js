@@ -1,12 +1,21 @@
 import React, { useState } from "react";
 import { createEmail } from "../../services/firestore";
 
-import { Container, Box, HeaderBox, Input, Message, Button } from "./styles";
+import {
+  Container,
+  Box,
+  HeaderBox,
+  Input,
+  Message,
+  Button,
+  Loading,
+} from "./styles";
 
 export default function EmailsPage() {
-  const [subject, setSubject] = useState("");
+  const [subject, setSubject] = useState("COREN-PI | ");
   const [content, setContent] = useState("");
-
+  const [isLoading, setLoading] = useState(false);
+  const [isEmailSend, setEmailSend] = useState(false);
   return (
     <Container>
       <Box>
@@ -30,13 +39,17 @@ export default function EmailsPage() {
         />
         <Button
           onClick={() =>
+            !isLoading &&
+            (setLoading(true),
             createEmail(subject, content).then(() => {
-              console.log("success");
-            })
+              setLoading(false);
+              setEmailSend(true);
+            }))
           }
         >
-          Enviar para todos os inscritos
+          {isLoading ? <Loading /> : "Enviar para todos os inscritos"}
         </Button>
+        <h1>{isEmailSend && "E-MAIL ENVIADO"}</h1>
       </Box>
     </Container>
   );

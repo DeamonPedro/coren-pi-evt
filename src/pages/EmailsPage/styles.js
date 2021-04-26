@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-
+import CircularProgress from "@material-ui/core/CircularProgress";
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -83,5 +83,11 @@ export const Button = styled.button`
   color: #fff;
   &:hover {
     background-color: #076475;
+  }
+`;
+
+export const Loading = styled(CircularProgress)`
+  && {
+    color: #fff;
   }
 `;
