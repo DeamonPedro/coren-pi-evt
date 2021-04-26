@@ -150,6 +150,9 @@ export default function Login() {
           </span>
           {isFormComplete != "" && <h2>{isFormComplete}</h2>}
           <label>Seu nome (completo) *</label>
+          <span style={{ fontSize: 12 }}>
+            Nome que irá constar no seu certificado do evento.
+          </span>
           <Input
             placeholder="Seu nome para certificação"
             value={nameComplete}
