@@ -15,7 +15,21 @@ export default function EmailsPage() {
           <h1>Mensagem</h1>
         </HeaderBox>
         <Message placeholder="Mensagem" message={true} />
-        <Button>Enviar para todos os inscritos</Button>
+        <Button
+          onClick={() => {
+            fetch(
+              "https://us-central1-coren-pi-evt.cloudfunctions.net/sendMail",
+              {
+                method: "POST",
+                body: "teste",
+              }
+            ).then(() => {
+              console.log("success");
+            });
+          }}
+        >
+          Enviar para todos os inscritos
+        </Button>
       </Box>
     </Container>
   );
