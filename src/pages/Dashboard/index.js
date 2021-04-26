@@ -152,7 +152,7 @@ export default function Dashboard() {
               <Title>
                 {menuSelected == "home" && "Página Inicial"}
                 {menuSelected == "certificate" && "Certificados"}
-                {menuSelected == "subscribers" && "Inscritos"}
+                {menuSelected == "subscribers" && "Usuários"}
                 {menuSelected == "emails" && "Enviar Email"}
               </Title>
               {width > 800 && <LogoCoren src={logoCoren} />}

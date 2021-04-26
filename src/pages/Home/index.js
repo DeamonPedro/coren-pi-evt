@@ -61,8 +61,8 @@ export default function Home() {
           <LogoSemanaEnf src={logoSemanaEnf} />
           <p>
             O Conselho Regional de Enfermagem do Piauí - COREN – PI, apresenta
-            sua Programação para a Semana de Enfermagem – 2021(12 a 20 de maio).
-            O evento tem como tema:{" "}
+            sua Programação para a Semana de Enfermagem – 2021 (12 a 20 de
+            maio). O evento tem como tema:{" "}
             <span>
               Enfermagem: Uma voz para liderar – Uma visão para o futuro dos
               cuidados de saúde.
@@ -70,7 +70,7 @@ export default function Home() {
             {(width < 800) & !expandTextMobile ? (
               <a onClick={() => setExpandTextMobile(true)}>Ver mais</a>
             ) : (
-              "Vale ressaltar que em 2020 o governo do Estado do Piauí sancionou a Lei nº 7.412 que institui e inclui no Calendário Oficial do Estado do Piauí a Semana de Enfermagem.A lei é uma grande conquista da categoria, representa o reconhecimento da importância da Enfermagem para a sociedade."
+              "Vale ressaltar que em 2020 o governo do Estado do Piauí sancionou a Lei nº 7.412 que institui e inclui no Calendário Oficial do Estado do Piauí a Semana de Enfermagem. A lei é uma grande conquista da categoria, representa o reconhecimento da importância da Enfermagem para a sociedade."
             )}
           </p>
         </InformationEvent>

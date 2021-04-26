@@ -8,7 +8,7 @@ export const Container = styled.div`
   width: 100%;
   padding: 0 50px 0 50px;
   @media (max-width: 800px) {
-    padding: 30px;
+    padding: 0;
   }
 `;
 
@@ -46,7 +46,7 @@ export const Input = styled.input`
   background-color: #f5f5f5;
   padding: 22px;
   width: 100%;
-  font-size: 2.remem;
+  font-size: 2rem;
 
   margin-bottom: 15px;
   text-align: start;
@@ -60,7 +60,7 @@ export const Message = styled.textarea`
   background-color: #f5f5f5;
   padding: 22px;
   width: 100%;
-  font-size: 2.remem;
+  font-size: 2rem;
 
   margin-bottom: 5px;
   text-align: start;
@@ -79,7 +79,7 @@ export const Button = styled.button`
   background-color: #044956;
   border: none;
   margin-top: 10px;
-  font-size: 1.remem;
+  font-size: 1.6rem;
   color: #fff;
   &:hover {
     background-color: #076475;

@@ -3,6 +3,7 @@ import CardMembershipRoundedIcon from "@material-ui/icons/CardMembershipRounded"
 import VisibilityRoundedIcon from "@material-ui/icons/VisibilityRounded";
 import SendIcon from "@material-ui/icons/Send";
 import GetAppIcon from "@material-ui/icons/GetApp";
+import CircularProgress from "@material-ui/core/CircularProgress";
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -97,4 +98,10 @@ export const DownloadIcon = styled(GetAppIcon)`
 export const Warning = styled.text`
   font-weight: 300;
   font-size: 1.5rem;
+`;
+
+export const Loading = styled(CircularProgress)`
+  && {
+    color: #044956;
+  }
 `;
