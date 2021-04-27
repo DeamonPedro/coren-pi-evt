@@ -96,6 +96,10 @@ export default function HomePageDashboard({
   };
 
   useEffect(() => {
+    setNameChange(nameUser);
+  }, [nameUser]);
+
+  useEffect(() => {
     if (liveList.length && completed.length) {
       setPercentage(completed.length * (100 / liveList.length));
     }
