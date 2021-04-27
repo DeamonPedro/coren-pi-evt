@@ -133,3 +133,15 @@ export const createEmail = (subject, content) => {
       });
   });
 };
+
+export const updateRegistration = (userID, newValue) => {
+  return new Promise((resolve, reject) => {
+    usersCollection
+      .doc(userID)
+      .update(newValue)
+      .then(() => resolve())
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};

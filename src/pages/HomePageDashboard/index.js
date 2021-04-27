@@ -16,7 +16,7 @@ import {
   ButtonChangeNameUser,
 } from "./styles";
 import ProgressBar from "../../components/ProgressBar";
-import { registerPresence } from "../../services/firestore";
+import { registerPresence, updateRegistration } from "../../services/firestore";
 import { auth } from "../../services/auth";
 import { useWindowDimensions } from "../../services/utils";
 
@@ -83,7 +83,7 @@ export default function HomePageDashboard({
   nameUser,
 }) {
   const [percentage, setPercentage] = useState(0);
-  const [nameChange, setNameChange] = useState({ nameUser }.nameUser);
+  const [nameChange, setNameChange] = useState(nameUser);
   const [focusNameUser, setFocusNameUser] = useState(false);
 
   const playLiveVideo = (checked, live) => {
@@ -116,7 +116,7 @@ export default function HomePageDashboard({
                 focus={focusNameUser}
               />
             ) : (
-              <h1 className="name">{nameUser}</h1>
+              <h1 className="name">{nameChange}</h1>
             )}
             <h3 className="warningDescription">
               Você pode alterar seu nome até o dia 18/5 para a emissão de seu
@@ -127,7 +127,11 @@ export default function HomePageDashboard({
             confirmed={focusNameUser}
             className="warning"
             onClick={() =>
-              focusNameUser ? window.location.reload() : setFocusNameUser(true)
+              focusNameUser
+                ? updateRegistration(auth.currentUser.uid, {
+                    nameComplete: nameChange,
+                  }) && setFocusNameUser(false)
+                : setFocusNameUser(true)
             }
           >
             {focusNameUser ? "Confirmar" : "Editar Nome"}
