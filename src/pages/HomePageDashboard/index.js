@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useFo } from "react";
 
 import {
   Container,
@@ -12,6 +12,8 @@ import {
   Divider,
   Button,
   StatusClassMobile,
+  InputNameChange,
+  ButtonChangeNameUser,
 } from "./styles";
 import ProgressBar from "../../components/ProgressBar";
 import { registerPresence } from "../../services/firestore";
@@ -74,8 +76,15 @@ const ClassInformation = ({ liveData, onClick, checked }) => {
   );
 };
 
-export default function HomePageDashboard({ liveList, completed, refresh }) {
+export default function HomePageDashboard({
+  liveList,
+  completed,
+  refresh,
+  nameUser,
+}) {
   const [percentage, setPercentage] = useState(0);
+  const [nameChange, setNameChange] = useState({ nameUser }.nameUser);
+  const [focusNameUser, setFocusNameUser] = useState(false);
 
   const playLiveVideo = (checked, live) => {
     window.open(live.url, "_blank").focus();
@@ -94,18 +103,37 @@ export default function HomePageDashboard({ liveList, completed, refresh }) {
 
   return (
     <Container>
-      {/* <Box style={{ backgroundColor: "#E8C824" }}>
+      <Box style={{ backgroundColor: "#E8C824" }}>
         <div className="groupWarning">
           <div className="groupDescriptionWarning">
-            <h1 className="verify">Verifique seus dados para certificação</h1>
-            <h3>
-              É importante que você confira seus dados para evitar problemas de
-              certificação.
+            <h1 className="verify">Este será seu nome no seu certificado:</h1>
+            {focusNameUser ? (
+              <InputNameChange
+                value={nameChange}
+                onChange={(evt) => setNameChange(evt.target.value)}
+                type="name"
+                autoFocus
+                focus={focusNameUser}
+              />
+            ) : (
+              <h1 className="name">{nameUser}</h1>
+            )}
+            <h3 className="warningDescription">
+              Você pode alterar seu nome até o dia 18/5 para a emissão de seu
+              certificado.
             </h3>
           </div>
-          <Button className="warning">Conferir</Button>
+          <ButtonChangeNameUser
+            confirmed={focusNameUser}
+            className="warning"
+            onClick={() =>
+              focusNameUser ? window.location.reload() : setFocusNameUser(true)
+            }
+          >
+            {focusNameUser ? "Confirmar" : "Editar Nome"}
+          </ButtonChangeNameUser>
         </div>
-      </Box> */}
+      </Box>
       <Box>
         <HeaderBox>
           <h1>Progresso</h1>

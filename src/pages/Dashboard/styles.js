@@ -27,6 +27,7 @@ export const MenuBar = styled.div`
   flex-direction: column;
   position: relative;
   transition: 0.3s;
+  width: 300px;
   ${(props) =>
     !props.visible &&
     css`
@@ -56,11 +57,13 @@ export const Avatar = styled.img`
   border-radius: 100%;
   margin-bottom: 10px;
 `;
-export const Name = styled.text`
+export const Name = styled.h1`
   font-weight: bold;
   font-size: 1.6rem;
   margin-top: 5px;
   margin-bottom: 20px;
+  width: 90%;
+  text-align: center;
 `;
 export const MenuItem = styled.button`
   border: none;

@@ -161,6 +161,7 @@ export default function Dashboard() {
             </HeaderContent>
             {menuSelected == "home" && (
               <HomePageDashboard
+                nameUser={auth.currentUser.displayName}
                 liveList={liveList}
                 refresh={loadUserData}
                 completed={userData.completed}

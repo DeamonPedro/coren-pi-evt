@@ -25,7 +25,7 @@ export const Box = styled.div`
     padding: 20px;
   }
   h3.warningDescription {
-    color: #fff;
+    color: #645b30;
     font-size: 1.8rem;
     font-weight: normal;
     @media (max-width: 800px) {
@@ -41,15 +41,21 @@ export const Box = styled.div`
       text-align: center;
     }
   }
-  .groupDescriptionWarning {
-  }
-  .warning {
-    background-color: #fff;
-    color: #e8c824;
-    &:hover {
-      background-color: #e5e5e5;
+
+  h1.name {
+    background-color: transparent;
+    border: none;
+    color: #1b1705;
+    font-weight: normal;
+    font-size: 2.6rem;
+    @media (max-width: 800px) {
+      text-align: center;
+      margin-bottom: 5px;
     }
   }
+  .groupDescriptionWarning {
+  }
+
   .groupWarning {
     display: flex;
     align-items: center;
@@ -58,6 +64,48 @@ export const Box = styled.div`
       flex-direction: column;
     }
   }
+`;
+
+export const ButtonChangeNameUser = styled.button`
+  padding: 12px 32px;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  background-color: #fff;
+  color: #e8c824;
+  border: none;
+  margin-top: 10px;
+  ${(props) =>
+    props.confirmed &&
+    css`
+      background-color: #32b14e;
+      color: #fff;
+    `}
+  @media (max-width: 800px) {
+    width: 100%;
+  }
+`;
+
+export const InputNameChange = styled.input`
+  background-color: transparent;
+  border: none;
+  color: #1b1705;
+  font-weight: normal;
+  font-size: 2.6rem;
+  @media (max-width: 800px) {
+    text-align: center;
+    margin-bottom: 5px;
+  }
+  ${(props) =>
+    props.focus &&
+    css`
+      background-color: #f5f5f5;
+      border-radius: 5px;
+      padding: 10px;
+      font-size: 1.5rem;
+      width: 100%;
+    `}
 `;
 
 export const HeaderBox = styled.div`
