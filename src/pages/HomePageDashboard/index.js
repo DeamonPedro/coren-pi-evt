@@ -130,7 +130,8 @@ export default function HomePageDashboard({
               focusNameUser
                 ? updateRegistration(auth.currentUser.uid, {
                     nameComplete: nameChange,
-                  }) && setFocusNameUser(false)
+                  }).then(() => window.location.reload()) &&
+                  setFocusNameUser(false)
                 : setFocusNameUser(true)
             }
           >

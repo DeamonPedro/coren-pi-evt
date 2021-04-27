@@ -88,7 +88,7 @@ export default function Dashboard() {
               {userData.admin && <TagADM>Administrador</TagADM>}
             </ContentAvatar>
 
-            <Name>{auth.currentUser.displayName}</Name>
+            <Name>{userData.nameComplete}</Name>
 
             <MenuItem
               onClick={() => (
