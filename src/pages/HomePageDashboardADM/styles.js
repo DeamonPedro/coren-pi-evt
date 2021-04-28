@@ -19,6 +19,7 @@ export const Box = styled.div`
   width: 100%;
   padding: 30px;
   margin-top: 30px;
+  position: relative;
   @media (max-width: 800px) {
     padding: 20px;
   }
@@ -93,7 +94,7 @@ export const ContainerAnalytics = styled.div`
 
 export const ContentUser = styled.div`
   display: grid;
-  grid-template-columns: 80px auto;
+  grid-template-columns: auto;
   grid-gap: 20px;
   align-items: center;
   justify-items: center;
@@ -124,4 +125,13 @@ export const ContentUser = styled.div`
       font-weight: 300;
     }
   }
+`;
+
+export const ButtonClose = styled.button`
+  position: absolute;
+  top: 170px;
+  right: 35px;
+  appearance: none;
+  border: none;
+  background-color: transparent;
 `;
