@@ -104,7 +104,7 @@ export default function HomePageDashboardADM() {
                       (userData.nurse == "nursingTec" &&
                         "Técnico em Enfermagem") ||
                       (userData.nurse == "nursingAssist" &&
-                        "Auxiliar em Enfermagem") ||
+                        "Auxiliar de Enfermagem") ||
                       (userData.nurse == "student" && "Estudante")}
                   </span>
                   <span>Aulas Feitas: {userData.completed?.length}</span>
@@ -156,7 +156,7 @@ export default function HomePageDashboardADM() {
               )}
             </div>
             <div className="occupation">
-              <h3>Assistente em Enfermagem</h3>
+              <h3>Auxiliar de Enfermagem</h3>
               {isLoadingAnalytics ? (
                 <Skeleton>
                   <h1>AAAA</h1>
