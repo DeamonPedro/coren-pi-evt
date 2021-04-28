@@ -16,7 +16,9 @@ export default function HomePageDashboardADM() {
   const [analytics, setAnalytics] = useState({});
   const [searchValue, setSearchValue] = useState("");
   const [isLoadingAnalytics, setLoadingAnalytics] = useState(true);
-  const [isLoadingUser, setLoadingUser] = useState(true);
+  const [isLoadingUser, setLoadingUser] = useState(false);
+  const [userData, setUserData] = useState({});
+
   useEffect(() => {
     getAnalytics().then((data) => {
       setLoadingAnalytics(false);
@@ -26,6 +28,7 @@ export default function HomePageDashboardADM() {
       setSelectedUser(user);
     });
   }, []);
+
   function cpfMask(value) {
     return value
       .replace(/\D/g, "")
@@ -34,6 +37,23 @@ export default function HomePageDashboardADM() {
       .replace(/(\d{3})(\d{1,2})/, "$1-$2")
       .replace(/(-\d{2})\d+?$/, "$1");
   }
+
+  function getUser(CPF) {
+    setUserData({});
+    setLoadingUser(true);
+    searchUserByCPF(CPF)
+      .then((data) => {
+        setUserData(data);
+      })
+      .catch(() => {
+        setUserData({
+          nameComplete: "Não encontrado",
+          nurse: "Não encontrado",
+          completed: [],
+        });
+      });
+  }
+
   return (
     <Container>
       <Box>
@@ -50,9 +70,10 @@ export default function HomePageDashboardADM() {
               evt.target.value.replace(/\-/g, "").replace(/\./g, "")
             )
           }
+          onKeyUp={(evt) => evt.key == "Enter" && getUser(searchValue)}
         />
-        {searchValue.length > 0 ? (
-          isLoadingUser ? (
+        {isLoadingUser ? (
+          userData == null ? (
             <ContentUser>
               <Skeleton variant="circle" width={80} height={80} />
 
@@ -72,9 +93,9 @@ export default function HomePageDashboardADM() {
             <ContentUser>
               <img />
               <div className="information">
-                <h1>Rainan carneiro araújo</h1>
-                <span>Ocupação: Estudante</span>
-                <span>Status: Evento nao concluído</span>
+                <h1>{userData.nameComplete}</h1>
+                <span>Ocupação: {userData.nurse}</span>
+                <span>Aulas Feitas: {userData.completed?.length}</span>
               </div>
             </ContentUser>
           )
