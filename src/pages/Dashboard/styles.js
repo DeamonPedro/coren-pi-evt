@@ -26,6 +26,7 @@ export const MenuBar = styled.div`
   justify-content: flex-start;
   flex-direction: column;
   position: relative;
+  z-index: 999;
   transition: 0.3s;
   width: 300px;
   ${(props) =>
