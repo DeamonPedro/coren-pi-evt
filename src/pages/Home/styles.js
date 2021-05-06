@@ -121,7 +121,26 @@ export const Options = styled.div`
   }
 `;
 
-export const AboutTab = styled.div``;
+export const AboutTab = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 30px 0;
+  @media (max-width: 800px) {
+    flex-direction: column;
+  }
+`;
+export const YoutubeVideo = styled.iframe`
+  width: 500px;
+  height: 250px;
+  margin: 10px;
+  border-radius: 10px;
+  @media (max-width: 800px) {
+    width: 300px;
+    height: 150px;
+  }
+`;
 
 export const ParticipantsTab = styled.div`
   display: flex;
@@ -130,7 +149,7 @@ export const ParticipantsTab = styled.div`
   margin-bottom: 100px;
   h1 {
     margin: 0 auto;
-    width: 550px;
+    width: 650px;
     margin-top: 50px;
     margin-bottom: 60px;
     font-weight: bold;

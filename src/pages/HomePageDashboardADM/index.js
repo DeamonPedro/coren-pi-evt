@@ -7,10 +7,11 @@ import {
   SearchBar,
   ContainerAnalytics,
   ContentUser,
+  ButtonClose,
 } from "./styles";
 import { searchUserByCPF, getAnalytics } from "../../services/firestore";
 import { Skeleton } from "@material-ui/lab";
-
+import CloseIcon from "@material-ui/icons/Close";
 export default function HomePageDashboardADM() {
   const [selectedUser, setSelectedUser] = useState({});
   const [analytics, setAnalytics] = useState({});
@@ -75,8 +76,6 @@ export default function HomePageDashboardADM() {
         {isLoadingUser ? (
           userData == null ? (
             <ContentUser>
-              <Skeleton variant="circle" width={80} height={80} />
-
               <div className="information">
                 <Skeleton>
                   <h1>Rainan Carneiro Araújo</h1>
@@ -90,14 +89,28 @@ export default function HomePageDashboardADM() {
               </div>
             </ContentUser>
           ) : (
-            <ContentUser>
-              <img />
-              <div className="information">
-                <h1>{userData.nameComplete}</h1>
-                <span>Ocupação: {userData.nurse}</span>
-                <span>Aulas Feitas: {userData.completed?.length}</span>
-              </div>
-            </ContentUser>
+            <>
+              <ButtonClose
+                onClick={() => (setSearchValue(""), setLoadingUser(false))}
+              >
+                <CloseIcon style={{ fontSize: 30 }} />
+              </ButtonClose>
+              <ContentUser>
+                <div className="information">
+                  <h1>{userData.nameComplete}</h1>
+                  <span>
+                    Ocupação:{" "}
+                    {(userData.nurse == "nurse" && "Enfermeiro(a)") ||
+                      (userData.nurse == "nursingTec" &&
+                        "Técnico em Enfermagem") ||
+                      (userData.nurse == "nursingAssist" &&
+                        "Auxiliar de Enfermagem") ||
+                      (userData.nurse == "student" && "Estudante")}
+                  </span>
+                  <span>Aulas Feitas: {userData.completed?.length}</span>
+                </div>
+              </ContentUser>
+            </>
           )
         ) : (
           <ContainerAnalytics>
@@ -119,7 +132,7 @@ export default function HomePageDashboardADM() {
                   <h1>AAAA</h1>
                 </Skeleton>
               ) : (
-                <h1>{analytics.certified}</h1>
+                <h1>{analytics.certified - 2}</h1>
               )}
             </div>
             <div className="occupation">
@@ -143,7 +156,7 @@ export default function HomePageDashboardADM() {
               )}
             </div>
             <div className="occupation">
-              <h3>Assistente em Enfermagem</h3>
+              <h3>Auxiliar de Enfermagem</h3>
               {isLoadingAnalytics ? (
                 <Skeleton>
                   <h1>AAAA</h1>

@@ -120,7 +120,7 @@ export default function HomePageDashboard({
                 focus={focusNameUser}
               />
             ) : (
-              <h1 className="name">{nameChange}</h1>
+              <h1 className="name">{nameUser}</h1>
             )}
             <h3 className="warningDescription">
               Você pode alterar seu nome até o dia 18/5 para a emissão de seu

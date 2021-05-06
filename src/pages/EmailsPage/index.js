@@ -22,8 +22,9 @@ export default function EmailsPage() {
     <Container>
       <Box>
         <HeaderBox>
-          <h1>Titulo</h1>
+          <h1>Assunto</h1>
         </HeaderBox>
+
         <Input
           value={subject}
           onChange={(evt) => setSubject(evt.target.value)}
@@ -33,6 +34,7 @@ export default function EmailsPage() {
         <HeaderBox>
           <h1>Mensagem</h1>
         </HeaderBox>
+
         <Message
           value={content}
           onChange={(evt) => setContent(evt.target.value)}

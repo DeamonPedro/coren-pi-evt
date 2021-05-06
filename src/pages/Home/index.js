@@ -24,6 +24,7 @@ import {
   ButtonIcon,
   InformationEvent,
   SocialNetwork,
+  YoutubeVideo,
 } from "./styles";
 import { Link } from "react-router-dom";
 import logoCoren from "../../assets/images/logoCoren.png";
@@ -59,6 +60,7 @@ export default function Home() {
         </Header>
         <InformationEvent>
           <LogoSemanaEnf src={logoSemanaEnf} />
+
           <p>
             O Conselho Regional de Enfermagem do Piauí - COREN – PI, apresenta
             sua Programação para a Semana de Enfermagem – 2021 (12 a 20 de
@@ -89,7 +91,34 @@ export default function Home() {
             </Link>
           </Options>
         </SubscribeCard>
-        <AboutTab></AboutTab>
+        <AboutTab>
+          <YoutubeVideo
+            src={`https://www.youtube.com/embed/ODFveiFnzBo`}
+            frameBorder="0"
+            allow="accelerometer; 
+            autoplay; 
+            clipboard-write; 
+            encrypted-media; 
+            gyroscope; 
+            picture-in-picture; 
+            controls=0"
+            allowFullScreen
+            title="COREN-PI | SEMANA DA ENFERMAGEM"
+          />
+          <YoutubeVideo
+            src={`https://www.youtube.com/embed/S19RrrYKcHQ`}
+            frameBorder="0"
+            allow="accelerometer; 
+            autoplay; 
+            clipboard-write; 
+            encrypted-media; 
+            gyroscope; 
+            picture-in-picture; 
+            controls=0"
+            allowFullScreen
+            title="COREN-PI | SEMANA DA ENFERMAGEM"
+          />
+        </AboutTab>
         <ParticipantsTab>
           <h1>Uma equipe de profissionais renomados para você.</h1>
           <Carousel

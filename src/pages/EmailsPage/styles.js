@@ -21,6 +21,9 @@ export const Box = styled.div`
   @media (max-width: 800px) {
     padding: 20px;
   }
+  label {
+    font-size: 1.6rem;
+  }
 `;
 
 export const HeaderBox = styled.div`
