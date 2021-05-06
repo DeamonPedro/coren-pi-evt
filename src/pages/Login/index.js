@@ -25,6 +25,7 @@ export default function Login() {
   const history = useHistory();
   const [CPF, setCPF] = useState("");
   const [nameComplete, setNameComplete] = useState("");
+  const [subscriptionComplete, setSubscriptionComplete] = useState(false);
   const [isFormComplete, setFormComplete] = useState("");
   const [occupation, setOccupation] = useState("notSelected");
   const [needRegister, setNeedRegister] = useState(false);
@@ -70,7 +71,9 @@ export default function Login() {
       setFormComplete("");
 
       registerUserData(auth.currentUser.uid, userData).then(() => {
-        history.push("/dashboard", userData);
+        if (subscriptionComplete == false) {
+          setSubscriptionComplete(true);
+        }
       });
     } else if (
       CPF != "" &&
@@ -133,7 +136,6 @@ export default function Login() {
               Acesse pela sua conta do Google. Se for sua primeira vez na nossa
               plataforma, preencha seus dados após o login.
             </span>
-
             <ButtonGoogle
               onClick={() =>
                 !loading &&
@@ -151,7 +153,6 @@ export default function Login() {
                 </>
               )}
             </ButtonGoogle>
-
             <h4>
               Nao possui conta do Google? clique <a>aqui.</a>{" "}
             </h4>
@@ -163,59 +164,77 @@ export default function Login() {
           )}
         </ContentLogin>
       ) : (
-        <ContentRegister>
-          <img src={logoCoren} />
-          <h1>Adicione seus dados</h1>
-          <span>
-            Precisamos de alguns dados seus para autorizar o seu acesso a nossa
-            plataforma.
-          </span>
-          {isFormComplete != "" && <h2>{isFormComplete}</h2>}
-          <label>Seu nome (completo) *</label>
-          <span style={{ fontSize: 12 }}>
-            Nome que irá constar no seu certificado do evento.
-          </span>
-          <Input
-            placeholder="Seu nome para certificação"
-            value={nameComplete}
-            onChange={(evt) => setNameComplete(evt.target.value)}
-            type="text"
-            id="name"
-            name="name"
-          />
-          <label>CPF *</label>
+        <ContentRegister subscriptionComplete={subscriptionComplete}>
+          {subscriptionComplete ? (
+            <>
+              <h1>Inscrição realizada com sucesso!</h1>
+              <span>
+                Seja Bem-Vindo(a) a Semana da Enfermagem do COREN-PI. Para
+                acessar nossa plataforma, pressione no botão "Continuar".
+              </span>
+              <div />
+              <Button onClick={() => history.push("/dashboard")}>
+                Continuar
+              </Button>
+            </>
+          ) : (
+            <>
+              <img src={logoCoren} />
+              <h1>Adicione seus dados</h1>
+              <span>
+                Precisamos de alguns dados seus para autorizar o seu acesso a
+                nossa plataforma.
+              </span>
+              {isFormComplete != "" && <h2>{isFormComplete}</h2>}
+              <label>Seu nome (completo) *</label>
+              <span style={{ fontSize: 12 }}>
+                Nome que irá constar no seu certificado do evento.
+              </span>
+              <Input
+                placeholder="Seu nome para certificação"
+                value={nameComplete}
+                onChange={(evt) => setNameComplete(evt.target.value)}
+                type="text"
+                id="name"
+                name="name"
+              />
+              <label>CPF *</label>
 
-          <Input
-            className="cpf"
-            errorCPF={CPF.length == 14 ? verifyCPF(CPF) : true}
-            placeholder="000.000.000-00"
-            value={cpfMask(CPF)}
-            onChange={(evt) => (evt.preventDefault(), setCPF(evt.target.value))}
-            id="CPF"
-            name="CPF"
-            type="text"
-            maxLength="14"
-          />
-          <label>Ocupação * </label>
-          <Select
-            value={occupation}
-            onChange={(evt) => setOccupation(evt.target.value)}
-            name="occupation"
-            id="occupation"
-            placeholder="selecione"
-          >
-            <option value="notSelected" disabled="true">
-              Selecione
-            </option>
-            <option value="nurse">Enfermeiro(a)</option>
-            <option value="nursingTec">Técnico(a) em enfermagem</option>
-            <option value="nursingAssist">Auxiliar de enfermagem</option>
-            <option value="student">Estudante</option>
-          </Select>
+              <Input
+                className="cpf"
+                errorCPF={CPF.length == 14 ? verifyCPF(CPF) : true}
+                placeholder="000.000.000-00"
+                value={cpfMask(CPF)}
+                onChange={(evt) => (
+                  evt.preventDefault(), setCPF(evt.target.value)
+                )}
+                id="CPF"
+                name="CPF"
+                type="text"
+                maxLength="14"
+              />
+              <label>Ocupação * </label>
+              <Select
+                value={occupation}
+                onChange={(evt) => setOccupation(evt.target.value)}
+                name="occupation"
+                id="occupation"
+                placeholder="selecione"
+              >
+                <option value="notSelected" disabled="true">
+                  Selecione
+                </option>
+                <option value="nurse">Enfermeiro(a)</option>
+                <option value="nursingTec">Técnico(a) em enfermagem</option>
+                <option value="nursingAssist">Auxiliar de enfermagem</option>
+                <option value="student">Estudante</option>
+              </Select>
 
-          <Button onClick={() => verifyForm(CPF, occupation)}>
-            Concluir inscrição
-          </Button>
+              <Button onClick={() => verifyForm(CPF, occupation)}>
+                Concluir inscrição
+              </Button>
+            </>
+          )}
         </ContentRegister>
       )}
     </Container>

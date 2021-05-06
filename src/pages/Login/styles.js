@@ -40,6 +40,7 @@ export const LeftContent = styled.div`
   height: 100%;
   border-radius: 20px 0 0 20px;
   padding: 50px 60px;
+
   @media (max-width: 800px) {
     padding: 50px 30px;
   }
@@ -119,6 +120,13 @@ export const ContentRegister = styled.div`
   background-color: #fff;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.06);
   border-radius: 20px;
+  ${(props) =>
+    props.subscriptionComplete &&
+    css`
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    `}
   @media (max-width: 800px) {
     padding: 50px 30px;
     width: 100%;
@@ -132,12 +140,22 @@ export const ContentRegister = styled.div`
     font-size: 26px;
     color: #43454f;
     margin-bottom: 10px;
+    ${(props) =>
+      props.subscriptionComplete &&
+      css`
+        text-align: center;
+      `}
   }
   span {
     font-weight: normal;
     font-size: 14px;
     line-height: 25px;
     color: #959292;
+    ${(props) =>
+      props.subscriptionComplete &&
+      css`
+        text-align: center;
+      `}
   }
   h2 {
     font-weight: normal;
@@ -191,6 +209,9 @@ export const Button = styled.button`
   border: none;
   margin-top: 30px;
   color: #fff;
+  @media (max-width: 800px) {
+    width: 80%;
+  }
   &:hover {
     background-color: #076475;
   }
