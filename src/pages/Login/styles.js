@@ -210,7 +210,7 @@ export const Button = styled.button`
   margin-top: 30px;
   color: #fff;
   @media (max-width: 800px) {
-    width: 80%;
+    width: 100%;
   }
   &:hover {
     background-color: #076475;
