@@ -1,5 +1,5 @@
-import React, { useCallback, useState } from "react";
-import { GooglePopupLogin, auth } from "../../services/auth";
+import React, { useEffect, useState } from "react";
+import { GoogleLogin, auth } from "../../services/auth";
 import { getUserData, registerUserData } from "../../services/firestore";
 import { Link, useHistory } from "react-router-dom";
 import {
@@ -18,6 +18,7 @@ import iconGoogle from "../../assets/images/iconGoogle.svg";
 import illustrationLogin from "../../assets/images/illustrationLogin.svg";
 import logoCoren from "../../assets/images/logoCoren.png";
 import { useWindowDimensions } from "../../services/utils";
+
 export default function Login() {
   const { width, height } = useWindowDimensions();
   const history = useHistory();
@@ -26,9 +27,18 @@ export default function Login() {
   const [isFormComplete, setFormComplete] = useState("");
   const [occupation, setOccupation] = useState("notSelected");
   const [needRegister, setNeedRegister] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    auth.getRedirectResult().then((data) => {
+      setLoading(false);
+      if (data.credential) {
+        checkSubscription(data);
+      }
+    });
+  }, []);
 
   const checkSubscription = (userData) => {
-    console.log(userData);
     getUserData(userData.user.uid)
       .then((data) => {
         history.push("/dashboard", data);
@@ -113,6 +123,7 @@ export default function Login() {
 
   return (
     <Container>
+      <p>{loading ? "true" : "false"}</p>
       {!needRegister ? (
         <ContentLogin>
           <LeftContent>
@@ -124,7 +135,7 @@ export default function Login() {
             </span>
             <ButtonGoogle
               onClick={() =>
-                GooglePopupLogin().then((data) => checkSubscription(data))
+                GoogleLogin().then((data) => checkSubscription(data))
               }
             >
               <IconGoogle src={iconGoogle} />

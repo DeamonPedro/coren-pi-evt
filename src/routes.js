@@ -21,7 +21,7 @@ export function Routes() {
   }, []);
 
   useEffect(() => {
-    console.log(authState !== "loading");
+    console.log(authState);
   }, [authState]);
 
   return (

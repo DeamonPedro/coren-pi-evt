@@ -4,13 +4,13 @@ export const auth = firebase.auth();
 
 auth.languageCode = "pt";
 
-export const GooglePopupLogin = async () => {
+export const GoogleLogin = async () => {
   const provider = new firebase.auth.GoogleAuthProvider();
-  return CreatePopup(provider);
+  return Redirect(provider);
 };
 
-const CreatePopup = async (provider) => {
-  return auth.signInWithPopup(provider);
+const Redirect = async (provider) => {
+  return auth.signInWithRedirect(provider);
 };
 
 export const Logout = async () => {
