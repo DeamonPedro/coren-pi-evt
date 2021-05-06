@@ -13,6 +13,7 @@ import {
   Button,
   Select,
   Input,
+  LoadingIcon,
 } from "./styles";
 import iconGoogle from "../../assets/images/iconGoogle.svg";
 import illustrationLogin from "../../assets/images/illustrationLogin.svg";
@@ -123,7 +124,6 @@ export default function Login() {
 
   return (
     <Container>
-      <p>{loading ? "true" : "false"}</p>
       {!needRegister ? (
         <ContentLogin>
           <LeftContent>
@@ -133,14 +133,25 @@ export default function Login() {
               Acesse pela sua conta do Google. Se for sua primeira vez na nossa
               plataforma, preencha seus dados após o login.
             </span>
+
             <ButtonGoogle
               onClick={() =>
+                !loading &&
                 GoogleLogin().then((data) => checkSubscription(data))
               }
             >
-              <IconGoogle src={iconGoogle} />
-              Acessar com Google
+              {loading ? (
+                <>
+                  <LoadingIcon size={24} />
+                </>
+              ) : (
+                <>
+                  <IconGoogle src={iconGoogle} />
+                  Acessar com Google
+                </>
+              )}
             </ButtonGoogle>
+
             <h4>
               Nao possui conta do Google? clique <a>aqui.</a>{" "}
             </h4>

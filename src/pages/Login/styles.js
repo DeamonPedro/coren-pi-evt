@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
+import CircularProgress from "@material-ui/core/CircularProgress";
 export const Container = styled.div`
   justify-content: center;
   width: 100%;
@@ -192,5 +193,11 @@ export const Button = styled.button`
   color: #fff;
   &:hover {
     background-color: #076475;
+  }
+`;
+
+export const LoadingIcon = styled(CircularProgress)`
+  && {
+    color: #044956;
   }
 `;
