@@ -14,17 +14,43 @@ import {
   Button,
   Loading,
 } from "./styles";
-import CertificateTemplate from "../../assets/images/certificado_evento_coren.png";
+import CertificateTemplate from "../../assets/images/certificado_evento_coren.pdf";
 import { jsPDF } from "jspdf";
 import { auth } from "../../services/auth";
 import { useWindowDimensions } from "../../services/utils";
+import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
+import FileSaver from "file-saver";
+
 export default function Certificate({ unlocked, name }) {
   const { width, height } = useWindowDimensions();
   const [isLoadingCertificate, setLoadingCertificate] = useState();
-  const downloadCertificate = () => {
+
+  const downloadCertificate = async () => {
+    const url = window.location.origin + "/files/certificado_evento_coren.pdf";
+    const existingPdfBytes = await fetch(url).then((res) => res.arrayBuffer());
+    const pdfDoc = await PDFDocument.load(existingPdfBytes);
+    const TimesRoman = await pdfDoc.embedFont(StandardFonts.TimesRoman);
+    const pages = pdfDoc.getPages();
+    pages[0].drawText(name, {
+      x:
+        100 +
+        (pages[0].getWidth() / 2 - TimesRoman.widthOfTextAtSize(name, 30) / 2),
+      y: 300,
+      size: 30,
+      font: TimesRoman,
+      color: rgb(0, 0, 0),
+    });
+    const pdfBytes = await pdfDoc.save();
+    var bytes = new Uint8Array(pdfBytes);
+    var blob = new Blob([bytes], { type: "application/pdf" });
+    FileSaver.saveAs(blob, "certificado.pdf");
+    setLoadingCertificate(false);
+
+    /*
     const canvas = document.createElement("canvas");
     const base_image = new Image();
     base_image.src = CertificateTemplate;
+
     base_image.onload = function () {
       canvas.width = base_image.naturalWidth;
       canvas.height = base_image.naturalHeight;
@@ -61,7 +87,7 @@ export default function Certificate({ unlocked, name }) {
           .save("certificado.pdf", { returnPromise: true })
           .then(() => setLoadingCertificate(false));
       }
-    };
+    };*/
   };
 
   return (

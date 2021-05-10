@@ -172,6 +172,7 @@ export default function Dashboard() {
                 unlocked={liveList.every((live) =>
                   userData.completed.includes(live.id)
                 )}
+                name={userData.nameComplete}
               />
             )}
             {menuSelected == "subscribers" && <HomePageDashboardADM />}
