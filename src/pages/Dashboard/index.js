@@ -88,7 +88,7 @@ export default function Dashboard() {
               {userData.admin && <TagADM>Administrador</TagADM>}
             </ContentAvatar>
 
-            <Name>{userData.nameComplete}</Name>
+            <Name>{userData.nameComplete.trim()}</Name>
 
             <MenuItem
               onClick={() => (
@@ -169,10 +169,8 @@ export default function Dashboard() {
             )}
             {menuSelected == "certificate" && (
               <Certificates
-                unlocked={liveList.every((live) =>
-                  userData.completed.includes(live.id)
-                )}
-                name={userData.nameComplete}
+                unlocked={userData.completed?.length >= 6}
+                name={userData.nameComplete.trim()}
               />
             )}
             {menuSelected == "subscribers" && <HomePageDashboardADM />}

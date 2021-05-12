@@ -25,9 +25,22 @@ const ClassInformation = ({ liveData, onClick, checked }) => {
   const date = startOn.toDate().toLocaleString().split(" ")[0];
   const hour = startOn.toDate().toLocaleString().split(" ")[1].substring(0, 5);
   const { width, height } = useWindowDimensions();
-  const playDisabled =
-    startOn.toDate().getTime() >= Date.now() ||
-    new Date("05-21-2021") <= Date.now();
+  const [playDisabled, setPlayDisabled] = useState(
+    Date.now() < new Date(startOn.toDate().getTime() - 30 * 60000)
+  );
+
+  const RealTimeChecked =
+    checked && Date.now() >= new Date(startOn.toDate().getTime() + 90 * 60000);
+
+  useEffect(() => {
+    const diff = startOn.toDate().getTime() - Date.now();
+    if (diff > 0) {
+      setTimeout(() => {
+        setPlayDisabled(false);
+      }, diff);
+    }
+  }, []);
+
   return (
     <ContainerClassInformation>
       {width > 800 ? (
@@ -44,18 +57,20 @@ const ClassInformation = ({ liveData, onClick, checked }) => {
           <span>Status: </span>
           <div>
             <span>
-              {checked
+              {RealTimeChecked
                 ? "Concluído"
                 : playDisabled
                 ? "Indisponível"
                 : "Pendente"}
             </span>{" "}
-            <StatusClass checked={checked} />
+            <StatusClass checked={RealTimeChecked} />
           </div>
         </StatusClassMobile>
       )}
       <DescriptionCLass>
-        <h1>{title + " | " + description}</h1>
+        <a onClick={!playDisabled && onClick}>
+          <h1>{title + " | " + description}</h1>
+        </a>
         {speakers.map((item) => {
           return <h3 className="speakers">{item}</h3>;
         })}
@@ -66,7 +81,7 @@ const ClassInformation = ({ liveData, onClick, checked }) => {
         </h3>
       </DescriptionCLass>
       {width > 800 ? (
-        <StatusClass checked={checked} />
+        <StatusClass checked={RealTimeChecked} />
       ) : (
         <Button playDisabled={playDisabled} onClick={!playDisabled && onClick}>
           Acessar
@@ -88,7 +103,7 @@ export default function HomePageDashboard({
 
   const playLiveVideo = (checked, live) => {
     window.open(live.url, "_blank").focus();
-    if (!checked) {
+    if (!checked && Date.now() <= new Date("05-21-2021")) {
       registerPresence(auth.currentUser.uid, live.id).then(() => {
         refresh();
       });
@@ -107,42 +122,44 @@ export default function HomePageDashboard({
 
   return (
     <Container>
-      <Box style={{ backgroundColor: "#E8C824" }}>
-        <div className="groupWarning">
-          <div className="groupDescriptionWarning">
-            <h1 className="verify">Este será seu nome no seu certificado:</h1>
-            {focusNameUser ? (
-              <InputNameChange
-                value={nameChange}
-                onChange={(evt) => setNameChange(evt.target.value)}
-                type="name"
-                autoFocus
-                focus={focusNameUser}
-              />
-            ) : (
-              <h1 className="name">{nameUser}</h1>
-            )}
-            <h3 className="warningDescription">
-              Você pode alterar seu nome até o dia 18/5 para a emissão de seu
-              certificado.
-            </h3>
+      {Date.now() <= new Date("05-19-2021") && (
+        <Box style={{ backgroundColor: "#E8C824" }}>
+          <div className="groupWarning">
+            <div className="groupDescriptionWarning">
+              <h1 className="verify">Este será seu nome no seu certificado:</h1>
+              {focusNameUser ? (
+                <InputNameChange
+                  value={nameChange}
+                  onChange={(evt) => setNameChange(evt.target.value)}
+                  type="name"
+                  autoFocus
+                  focus={focusNameUser}
+                />
+              ) : (
+                <h1 className="name">{nameUser}</h1>
+              )}
+              <h3 className="warningDescription">
+                Você pode alterar seu nome até o dia 18/5 para a emissão de seu
+                certificado.
+              </h3>
+            </div>
+            <ButtonChangeNameUser
+              confirmed={focusNameUser}
+              className="warning"
+              onClick={() =>
+                focusNameUser
+                  ? updateRegistration(auth.currentUser.uid, {
+                      nameComplete: nameChange,
+                    }).then(() => window.location.reload()) &&
+                    setFocusNameUser(false)
+                  : setFocusNameUser(true)
+              }
+            >
+              {focusNameUser ? "Confirmar" : "Editar Nome"}
+            </ButtonChangeNameUser>
           </div>
-          <ButtonChangeNameUser
-            confirmed={focusNameUser}
-            className="warning"
-            onClick={() =>
-              focusNameUser
-                ? updateRegistration(auth.currentUser.uid, {
-                    nameComplete: nameChange,
-                  }).then(() => window.location.reload()) &&
-                  setFocusNameUser(false)
-                : setFocusNameUser(true)
-            }
-          >
-            {focusNameUser ? "Confirmar" : "Editar Nome"}
-          </ButtonChangeNameUser>
-        </div>
-      </Box>
+        </Box>
+      )}
       <Box>
         <HeaderBox>
           <h1>Progresso</h1>

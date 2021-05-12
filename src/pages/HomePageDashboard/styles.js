@@ -171,6 +171,7 @@ export const DescriptionCLass = styled.div`
   h1 {
     color: #044956;
     font-weight: 300;
+    cursor: pointer;
     @media (max-width: 800px) {
       margin-bottom: 10px;
     }

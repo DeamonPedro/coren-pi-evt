@@ -119,6 +119,7 @@ export const Button = styled.button`
   justify-content: center;
   color: #fff;
   font-size: 1.6rem;
+  cursor: pointer;
   @media (max-width: 800px) {
     width: 100%;
   }
