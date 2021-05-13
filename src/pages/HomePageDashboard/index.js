@@ -101,7 +101,10 @@ export default function HomePageDashboard({
   const playLiveVideo = (checked, live) => {
     window.open(live.url, "_blank").focus();
     if (!checked && Date.now() <= new Date("05-21-2021")) {
-      registerPresence(auth.currentUser.uid, live.id).then(() => {
+      registerPresence(auth.currentUser.uid, live.id).then(async () => {
+        if (completed.length + 1 >= 6) {
+          await updateRegistration(auth.currentUser.uid, { certified: true });
+        }
         refresh();
       });
     }

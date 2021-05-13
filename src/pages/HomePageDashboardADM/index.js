@@ -25,9 +25,6 @@ export default function HomePageDashboardADM() {
       setLoadingAnalytics(false);
       setAnalytics(data);
     });
-    searchUserByCPF("01793455325").then((user) => {
-      setSelectedUser(user);
-    });
   }, []);
 
   function cpfMask(value) {
@@ -132,7 +129,7 @@ export default function HomePageDashboardADM() {
                   <h1>AAAA</h1>
                 </Skeleton>
               ) : (
-                <h1>{analytics.certified - 2}</h1>
+                <h1>{analytics.certified}</h1>
               )}
             </div>
             <div className="occupation">

@@ -102,9 +102,7 @@ export const getAnalytics = () => {
       ).docs.length;
 
       const certified = (
-        await usersCollection
-          .where("completed", "array-contains", "O1m22MV0hy09LOW2vXC1")
-          .get()
+        await usersCollection.where("certified", "==", true).get()
       ).docs.length;
       resolve({
         nurse,

@@ -4,6 +4,7 @@ import {
   getUserData,
   registerUserData,
   registerPresence,
+  updateRegistration,
 } from "../../services/firestore";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import {
@@ -61,6 +62,11 @@ export default function Login() {
         const liveID = query.get("checkout");
         if (livesIDList.includes(liveID) && !data.completed.includes(liveID)) {
           await registerPresence(userData.user.uid, liveID);
+          console.log(data.completed.length + 1);
+          if (data.completed.length + 1 >= 6) {
+            await updateRegistration(userData.user.uid, { certified: true });
+          }
+          alert("Presença Registada");
         }
         history.push("/dashboard", data);
       })
