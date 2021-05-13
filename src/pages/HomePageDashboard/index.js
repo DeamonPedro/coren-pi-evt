@@ -29,9 +29,6 @@ const ClassInformation = ({ liveData, onClick, checked }) => {
     Date.now() < new Date(startOn.toDate().getTime() - 30 * 60000)
   );
 
-  const RealTimeChecked =
-    checked && Date.now() >= new Date(startOn.toDate().getTime() + 90 * 60000);
-
   useEffect(() => {
     const diff = startOn.toDate().getTime() - Date.now();
     if (diff > 0) {
@@ -57,13 +54,13 @@ const ClassInformation = ({ liveData, onClick, checked }) => {
           <span>Status: </span>
           <div>
             <span>
-              {RealTimeChecked
+              {checked
                 ? "Concluído"
                 : playDisabled
                 ? "Indisponível"
                 : "Pendente"}
             </span>{" "}
-            <StatusClass checked={RealTimeChecked} />
+            <StatusClass checked={checked} />
           </div>
         </StatusClassMobile>
       )}
@@ -81,7 +78,7 @@ const ClassInformation = ({ liveData, onClick, checked }) => {
         </h3>
       </DescriptionCLass>
       {width > 800 ? (
-        <StatusClass checked={RealTimeChecked} />
+        <StatusClass checked={checked} />
       ) : (
         <Button playDisabled={playDisabled} onClick={!playDisabled && onClick}>
           Acessar

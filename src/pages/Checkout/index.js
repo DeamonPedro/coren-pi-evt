@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { GoogleLogin, auth } from "../../services/auth";
-import {
-  getUserData,
-  registerUserData,
-  registerPresence,
-} from "../../services/firestore";
-import { Link, useHistory, useLocation } from "react-router-dom";
+import { getUserData, registerUserData } from "../../services/firestore";
+import { Link, useHistory } from "react-router-dom";
 import {
   Container,
   ContentLogin,
@@ -27,7 +23,6 @@ import { useWindowDimensions } from "../../services/utils";
 export default function Login() {
   const { width, height } = useWindowDimensions();
   const history = useHistory();
-  const query = new URLSearchParams(useLocation().search);
   const [CPF, setCPF] = useState("");
   const [nameComplete, setNameComplete] = useState("");
   const [subscriptionComplete, setSubscriptionComplete] = useState(false);
@@ -35,16 +30,6 @@ export default function Login() {
   const [occupation, setOccupation] = useState("notSelected");
   const [needRegister, setNeedRegister] = useState(false);
   const [loading, setLoading] = useState(true);
-
-  const livesIDList = [
-    "r8dJuTnAjkbr6HzpGfRc",
-    "D1X4PT20Ek6QD9H1POYr",
-    "NEBD7arI17XeNfoYaYUl",
-    "9xvdpw39JzCH9I7aU5ee",
-    "fIzIYlvA24bB0eKHsT43",
-    "uAAlRUNbvYUvLJYG300X",
-    "O1m22MV0hy09LOW2vXC1",
-  ];
 
   useEffect(() => {
     auth.getRedirectResult().then((data) => {
@@ -57,11 +42,7 @@ export default function Login() {
 
   const checkSubscription = (userData) => {
     getUserData(userData.user.uid)
-      .then(async (data) => {
-        const liveID = query.get("checkout");
-        if (livesIDList.includes(liveID) && !data.completed.includes(liveID)) {
-          await registerPresence(userData.user.uid, liveID);
-        }
+      .then((data) => {
         history.push("/dashboard", data);
       })
       .catch((error) => {
@@ -89,11 +70,7 @@ export default function Login() {
       };
       setFormComplete("");
 
-      registerUserData(auth.currentUser.uid, userData).then(async () => {
-        const liveID = query.get("checkout");
-        if (livesIDList.includes(liveID)) {
-          await registerPresence(auth.currentUser.uid, liveID);
-        }
+      registerUserData(auth.currentUser.uid, userData).then(() => {
         if (subscriptionComplete == false) {
           setSubscriptionComplete(true);
         }
